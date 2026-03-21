@@ -1,3 +1,17 @@
+import Hero from "@/components/sections/Hero";
+import Origin from "@/components/sections/Origin";
+import Showroom from "@/components/sections/Showroom";
+import Toolkit from "@/components/sections/Toolkit";
+import Handshake from "@/components/sections/Handshake";
+
 export default function Home() {
-  return <main className="min-h-screen bg-white dark:bg-black"></main>;
+  return (
+    <main className="bg-black text-white selection:bg-blue-500 selection:text-white">
+      <Hero />
+      <Origin />
+      <Showroom />
+      <Toolkit />
+      <Handshake />
+    </main>
+  );
 }
