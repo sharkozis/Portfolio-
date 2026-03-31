@@ -1,26 +1,75 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  /* ═══════════════════════════════════════════════
+     Core Theme Color Variables
+     Change these to restyle the entire website
+  ═══════════════════════════════════════════════ */
+
+  /* Base background - deepest dark */
+  --bg-base: #0a0a1a;
+
+  /* Grid line color */
+  --grid-color: rgba(255, 255, 255, 0.04);
+  --grid-size: 60px;
+
+  /* Gradient glow colors */
+  --glow-purple: #7b2ff2;
+  --glow-blue: #3b82f6;
+  --glow-magenta: #c026d3;
+
+  /* Hero section - highlighted, vibrant */
+  --hero-glow-purple: rgba(123, 47, 242, 0.35);
+  --hero-glow-blue: rgba(59, 130, 246, 0.25);
+  --hero-glow-magenta: rgba(192, 38, 211, 0.2);
+
+  /* Origin section - subdued, dark tone */
+  --origin-glow-purple: rgba(123, 47, 242, 0.08);
+  --origin-glow-blue: rgba(59, 130, 246, 0.06);
+
+  /* Text */
+  --foreground: #ededed;
+  --text-muted: #71717a;
+  --text-accent: var(--glow-purple);
+
+  /* Selection */
+  --selection-bg: var(--glow-purple);
+  --selection-text: #ffffff;
 }
 
 @theme inline {
-  --color-background: var(--background);
+  --color-background: var(--bg-base);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
-  background: var(--background);
+  background: var(--bg-base);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* ═══════════════════════════════════════════════
+   Grid Pattern Overlay (static)
+═══════════════════════════════════════════════ */
+.bg-grid,
+.bg-grid-animated {
+  background-image:
+    linear-gradient(to right, var(--grid-color) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--grid-color) 1px, transparent 1px);
+  background-size: var(--grid-size) var(--grid-size);
+}
+
+/* ═══════════════════════════════════════════════
+   Vignette overlay for depth
+═══════════════════════════════════════════════ */
+.vignette {
+  background: radial-gradient(
+    ellipse at center,
+    transparent 50%,
+    var(--bg-base) 100%
+  );
+}
+
+

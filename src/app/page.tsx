@@ -6,7 +6,12 @@ import Handshake from "@/components/sections/Handshake";
 
 export default function Home() {
   return (
-    <main className="bg-black text-white selection:bg-blue-500 selection:text-white">
+    <main
+      className="text-white selection:bg-[var(--selection-bg)] selection:text-white"
+      style={{
+        background: "var(--bg-base)",
+      }}
+    >
       <Hero />
       <Origin />
       <Showroom />

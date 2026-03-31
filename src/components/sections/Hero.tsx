@@ -45,19 +45,80 @@ const FolderStack = ({ label, color }: { label: string; color: string }) => {
 
 export default function Hero() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden bg-black px-6">
-      {/* Background Ambient Glow */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-500/10 blur-[120px] rounded-full -z-10" />
-      <div className="absolute top-1/3 left-1/4 w-[400px] h-[400px] bg-purple-500/10 blur-[100px] rounded-full -z-10" />
+    <section
+      className="min-h-screen flex flex-col items-center justify-center relative overflow-hidden px-6"
+      style={{ background: "var(--bg-base)" }}
+    >
+      {/* ── Grid Overlay ── */}
+      <div
+        className="absolute inset-0 bg-grid-animated pointer-events-none"
+        style={{ zIndex: 0 }}
+      />
 
-      <div className="max-w-7xl w-full flex flex-col items-center">
+      {/* ── Primary Purple Glow (top-right, bright) ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "30%",
+          left: "60%",
+          width: "700px",
+          height: "700px",
+          background: `radial-gradient(ellipse at center, var(--hero-glow-purple), transparent 70%)`,
+          filter: "blur(80px)",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Blue Glow (right side) ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "40%",
+          left: "75%",
+          width: "600px",
+          height: "600px",
+          background: `radial-gradient(ellipse at center, var(--hero-glow-blue), transparent 70%)`,
+          filter: "blur(100px)",
+          zIndex: 0,
+        }}
+      />
+
+      {/* ── Magenta Glow (top-center, subtle accent) ── */}
+      <div
+        className="absolute pointer-events-none"
+        style={{
+          top: "20%",
+          left: "50%",
+          width: "500px",
+          height: "500px",
+          background: `radial-gradient(ellipse at center, var(--hero-glow-magenta), transparent 70%)`,
+          filter: "blur(120px)",
+          zIndex: 0,
+          opacity: 0.5,
+        }}
+      />
+
+      {/* ── Vignette Layer ── */}
+      <div
+        className="absolute inset-0 vignette pointer-events-none"
+        style={{ zIndex: 1 }}
+      />
+
+      {/* ── Content ── */}
+      <div
+        className="max-w-7xl w-full flex flex-col items-center relative"
+        style={{ zIndex: 2 }}
+      >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
           className="relative text-center"
         >
-          <span className="text-blue-500 font-mono text-sm tracking-[0.3em] font-bold mb-6 block uppercase">
+          <span
+            className="font-mono text-sm tracking-[0.3em] font-bold mb-6 block uppercase"
+            style={{ color: "var(--glow-purple)" }}
+          >
             Available for worldwide collaboration
           </span>
           <h1 className="text-[14vw] sm:text-[12vw] leading-[0.8] font-black text-white tracking-tighter uppercase select-none">
@@ -73,9 +134,9 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-wrap justify-center gap-12 md:gap-20 mt-24"
         >
-          <FolderStack label="Frontend" color="#2563eb" />
-          <FolderStack label="UI Design" color="#7c3aed" />
-          <FolderStack label="Motion" color="#db2777" />
+          <FolderStack label="Frontend" color="var(--glow-blue)" />
+          <FolderStack label="UI Design" color="var(--glow-purple)" />
+          <FolderStack label="Motion" color="var(--glow-magenta)" />
         </motion.div>
       </div>
 
@@ -83,9 +144,10 @@ export default function Hero() {
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5, duration: 1 }}
-        className="absolute bottom-12 flex flex-col items-center gap-4 text-zinc-500 font-mono text-[10px] tracking-[0.4em] uppercase font-bold"
+        className="absolute bottom-12 flex flex-col items-center gap-4 font-mono text-[10px] tracking-[0.4em] uppercase font-bold"
+        style={{ color: "var(--text-muted)", zIndex: 2 }}
       >
-        <span className="animate-pulse">Scroll to explore the origin</span>
+        <span>Scroll to explore the origin</span>
         <div className="w-[1px] h-16 bg-gradient-to-b from-zinc-500 to-transparent" />
       </motion.div>
     </section>
