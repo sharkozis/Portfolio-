@@ -38,9 +38,9 @@ export function Navbar() {
   const activeHref = "#home";
 
   return (
-    <div className="fixed bottom-6 left-1/2 z-50 max-w-full -translate-x-1/2 overflow-visible">
+    <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 max-w-full -translate-x-1/2 overflow-visible">
       <div className="relative overflow-visible">
-        <Dock className="items-end pb-3 bg-black/40 backdrop-blur-lg border border-white/10 rounded-3xl shadow-2xl">
+        <Dock className="items-end pb-3 bg-black/40 backdrop-blur-lg border border-white/10 rounded-lg shadow-2xl">
           {navItems.map((item, idx) => (
             <DockItem
               key={idx}
@@ -50,7 +50,7 @@ export function Navbar() {
                   element.scrollIntoView({ behavior: "smooth" });
                 }
               }}
-              className="aspect-square rounded-full bg-white/5 hover:bg-white/10 transition-colors"
+              className="aspect-square transition-colors"
             >
               <DockLabel>{item.title}</DockLabel>
               <DockIcon
