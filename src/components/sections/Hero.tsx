@@ -25,30 +25,31 @@ export default function Hero() {
         {/* Top Layout: Avatar + Text on left, Connect on right */}
         <div className="w-full flex flex-col md:flex-row justify-between items-start gap-12 md:gap-0">
           {/* Left Side: Avatar and Text Content beside each other */}
-          <div className="flex flex-col md:flex-row items-center md:items-start gap-8 md:gap-10">
+          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10">
             {/* Avatar Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6 }}
-              className="relative w-40 h-40 md:w-48 md:h-48 rounded-xl border-[3px] border-white overflow-hidden bg-[#111] flex items-center justify-center shadow-2xl shrink-0"
+              className="relative w-20 h-20 rounded-xl border-[3px] border-white overflow-hidden flex items-center justify-center shadow-2xl shrink-0"
             >
               <Image
                 src="/HeroImg.svg"
                 alt="Hossain Avatar"
-                fill
-                className="object-cover"
+                width={120}
+                height={120}
+                className="object-cover scale-150"
                 priority
               />
             </motion.div>
 
             {/* Text Content beside Avatar */}
-            <div className="flex flex-col text-center md:text-left pt-2 md:pt-10">
+            <div className="flex flex-col text-center md:text-left">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-1"
+                className="text-4xl md:text-7xl font-bold tracking-tight text-white mb-0"
               >
                 Hi, I’m Hossain
               </motion.h1>
@@ -68,7 +69,7 @@ export default function Hero() {
             initial={{ opacity: 0, x: 20 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="shrink-0 pt-2 md:pt-12"
+            className="shrink-0 md:pt-4"
           >
             <AnimatedShinyButton className="px-8 shadow-2xl">
               Connect
