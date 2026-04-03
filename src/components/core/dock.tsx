@@ -118,7 +118,7 @@ function Dock({
     >
       <motion.div
         className={cn(
-          "mx-auto flex w-fit gap-4 rounded-2xl bg-gray-50/10 px-4 backdrop-blur-md border border-white/10 dark:bg-neutral-900/80",
+          "mx-auto flex w-fit gap-6 rounded-2xl bg-white/5 px-10 backdrop-blur-2xl border border-white/10",
           className,
         )}
         style={{ height: panelHeight }}

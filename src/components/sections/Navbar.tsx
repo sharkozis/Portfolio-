@@ -38,9 +38,9 @@ export function Navbar() {
   const activeHref = "#home";
 
   return (
-    <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 max-w-full -translate-x-1/2 overflow-visible">
+    <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 -translate-x-1/2 w-full max-w-[90vw] md:max-w-3xl overflow-visible">
       <div className="relative overflow-visible">
-        <Dock className="items-end pb-3 bg-black/40 backdrop-blur-lg border border-white/10 rounded-lg shadow-2xl">
+        <Dock className="items-end pb-3 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl px-8 items-center justify-center gap-8">
           {navItems.map((item, idx) => (
             <DockItem
               key={idx}

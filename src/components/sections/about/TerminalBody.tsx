@@ -62,7 +62,7 @@ export default function TerminalBody() {
           transition={{ delay: 0.8 }}
           className="pt-10 border-t border-white/5 flex items-center gap-2 text-[#4cd964] font-mono text-xs md:text-sm"
         >
-          <span>✓ Compiled in 32ms............</span>
+          <span>✓ <span className="text-white">Compiled in</span> 32ms............</span>
         </motion.div>
       </div>
     </div>
