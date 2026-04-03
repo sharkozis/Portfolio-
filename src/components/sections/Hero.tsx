@@ -92,7 +92,7 @@ export default function Hero() {
             I <SelectionFrame>Design</SelectionFrame> and{" "}
             <SelectionFrame>Develop</SelectionFrame>{" "}
             <span className="text-shimmer">
-              clean, user-focused digital experiences.
+              clean Mobile and Web applications.
             </span>
             <br className="hidden md:block" />
           </p>

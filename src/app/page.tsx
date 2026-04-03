@@ -1,5 +1,5 @@
 import Hero from "@/components/sections/Hero";
-import Origin from "@/components/sections/Origin";
+import AboutSection from "@/components/sections/about/AboutSection";
 import Showroom from "@/components/sections/Showroom";
 import Toolkit from "@/components/sections/Toolkit";
 import Handshake from "@/components/sections/Handshake";
@@ -14,7 +14,7 @@ export default function Home() {
       }}
     >
       <Hero />
-      <Origin />
+      <AboutSection />
       <Showroom />
       <Toolkit />
       <Handshake />

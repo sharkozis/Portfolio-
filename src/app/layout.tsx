@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   description: "Designer - Developer Portfolio",
 };
 
+import SmoothScroll from "@/components/core/SmoothScroll";
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -23,7 +25,9 @@ export default function RootLayout({
       lang="en"
       className={`${roboto.variable} h-full antialiased font-sans`}
     >
-      <body className="min-h-full flex flex-col">{children}</body>
+      <body className="min-h-full flex flex-col">
+        <SmoothScroll>{children}</SmoothScroll>
+      </body>
     </html>
   );
 }
