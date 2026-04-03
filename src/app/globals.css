@@ -31,6 +31,7 @@
   /* Origin section - subdued, dark tone */
   --origin-glow-purple: rgba(123, 47, 242, 0.08);
   --origin-glow-blue: rgba(59, 130, 246, 0.06);
+  --origin-glow-green: rgba(34, 197, 94, 0.45);
 
   /* Text */
   --text-muted: #71717a;

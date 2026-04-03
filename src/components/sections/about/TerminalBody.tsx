@@ -5,18 +5,18 @@ import { motion } from "framer-motion";
 
 export default function TerminalBody() {
   return (
-    <div className="p-6 md:p-10 font-sans space-y-8">
+    <div className="p-8 md:p-14 font-sans space-y-10">
       {/* ── Prompt ── */}
-      <div className="flex items-center gap-2 text-sm md:text-base mb-10">
+      <div className="flex items-center gap-2 text-sm md:text-base mb-12">
         <span className="text-[#4cd964] font-medium">
           Desktop C: \portolio \About me &gt;
         </span>
       </div>
 
       {/* ── Content ── */}
-      <div className="space-y-12">
+      <div className="space-y-14">
         <RevealLine>
-          <h2 className="text-xl md:text-3xl font-medium leading-relaxed text-zinc-400">
+          <h2 className="text-xl md:text-4xl font-medium leading-[1.4] text-zinc-400">
             Hey, I'm <span className="text-white font-bold">Hossain</span> — a{" "}
             <span className="text-white font-bold">Designer</span> and{" "}
             <span className="text-white font-bold">Frontend Developer</span>{" "}
@@ -25,18 +25,16 @@ export default function TerminalBody() {
         </RevealLine>
 
         <RevealLine>
-          <p className="text-lg md:text-2xl leading-relaxed text-zinc-400">
+          <p className="text-lg md:text-2xl leading-relaxed text-zinc-400 max-w-5xl">
             I've been working in this field for over{" "}
-            <span className="text-white font-bold underline decoration-zinc-800 underline-offset-4">
-              4 years
-            </span>
-            , helping different clients turn their ideas into clean and smooth
-            Mobile apps or websites.
+            <span className="text-white font-bold">4 years</span>, helping
+            different clients turn their ideas into clean and smooth Mobile apps
+            or websites.
           </p>
         </RevealLine>
 
         <RevealLine>
-          <p className="text-lg md:text-2xl leading-relaxed text-zinc-400">
+          <p className="text-lg md:text-2xl leading-relaxed text-zinc-400 max-w-5xl">
             Even though development is my main work,{" "}
             <span className="text-white font-bold">
               I really love designing
@@ -48,9 +46,9 @@ export default function TerminalBody() {
         </RevealLine>
 
         <RevealLine>
-          <div className="flex flex-wrap items-center gap-x-3 gap-y-4 text-lg md:text-2xl leading-relaxed text-zinc-400">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-6 text-lg md:text-2xl leading-relaxed text-zinc-400">
             <span>My goal is to create work that</span>
-            <span className="inline-block px-4 py-1.5 bg-[#4cd964] text-black font-bold rounded-full text-base md:text-xl">
+            <span className="inline-block px-5 py-2 bg-[#4cd964] text-black font-bold rounded-md text-base md:text-xl">
               not only looks good but also feels right
             </span>
             <span>for people to use.</span>
@@ -61,8 +59,8 @@ export default function TerminalBody() {
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ delay: 0.5 }}
-          className="pt-6 border-t border-white/5 flex items-center gap-2 text-[#4cd964] font-mono text-sm"
+          transition={{ delay: 0.8 }}
+          className="pt-10 border-t border-white/5 flex items-center gap-2 text-[#4cd964] font-mono text-xs md:text-sm"
         >
           <span>✓ Compiled in 32ms............</span>
         </motion.div>
