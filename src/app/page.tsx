@@ -1,6 +1,6 @@
 import Hero from "@/components/sections/Hero";
 import AboutSection from "@/components/sections/about/AboutSection";
-import Toolkit from "@/components/sections/Toolkit";
+import Skills from "@/components/sections/Skills";
 import Handshake from "@/components/sections/Handshake";
 import { Navbar } from "@/components/sections/Navbar";
 
@@ -14,7 +14,7 @@ export default function Home() {
     >
       <Hero />
       <AboutSection />
-      <Toolkit />
+      <Skills />
       <Handshake />
       <Navbar />
     </main>
