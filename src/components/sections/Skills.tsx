@@ -11,7 +11,7 @@ import {
 import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import Image from "next/image";
 
-const skills = [
+const frontendSkills = [
   { name: "Compose", icon: "/compose-icon.svg" },
   { name: "Next.js", icon: "/next-icon.svg" },
   { name: "TypeScript", icon: "/ts-icon.svg" },
@@ -24,6 +24,18 @@ const skills = [
   { name: "Compose", icon: "/compose-icon.svg" },
   { name: "Next.js", icon: "/next-icon.svg" },
   { name: "TypeScript", icon: "/ts-icon.svg" },
+];
+
+const designSkills = [
+  { name: "Illustrator", icon: "/illustrator-icon.svg" },
+  { name: "Figma", icon: "/figma-icon.svg" },
+  { name: "Framer", icon: "/framer-icon.svg" },
+  { name: "Canva", icon: "/canva-icon.svg" },
+  { name: "Affinity", icon: "/affinity-icon.svg" },
+  { name: "Illustrator", icon: "/illustrator-icon.svg" },
+  { name: "Figma", icon: "/figma-icon.svg" },
+  { name: "Framer", icon: "/framer-icon.svg" },
+  { name: "Canva", icon: "/canva-icon.svg" },
 ];
 
 export default function Skills() {
@@ -54,8 +66,8 @@ export default function Skills() {
     const velocity = info.velocity.x;
     const currentRotation = rotation.get();
 
-    // Snapping logic: targeted for 360/12 = 30 degree spacing
-    const snapSpacing = 30;
+    // Snapping logic based on active mode spacing
+    const snapSpacing = activeMode === "frontend" ? 30 : 40;
 
     // Project final position (much shorter for snappy 'Snap-to-Slot' feel)
     const projectedRotation = currentRotation + velocity * 0.04;
@@ -98,9 +110,9 @@ export default function Skills() {
         }}
       />
 
-      <div className="relative z-10 container mx-auto px-12 md:px-24 pt-16 md:pt-30 flex flex-col max-w-7xl">
+      <div className="relative z-40 container mx-auto px-12 md:px-24 pt-16 md:pt-30 flex flex-col max-w-7xl">
         {/* Header and Toggle Button Group */}
-        <div className="flex flex-col items-start mb-16 gap-6">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 relative z-50">
           <h2 className="text-[var(--brand-green)] text-5xl md:text-6xl font-extrabold uppercase tracking-tight">
             Skills
           </h2>
@@ -108,7 +120,7 @@ export default function Skills() {
           <div className="flex bg-[#111] p-1 rounded-full border border-white/5 shadow-2xl relative">
             <div
               onClick={() => setActiveMode("frontend")}
-              className={`cursor-pointer transition-opacity duration-300 ${activeMode !== "frontend" ? "opacity-30" : "opacity-100"}`}
+              className={`cursor-pointer transition-all duration-300 ${activeMode !== "frontend" ? "opacity-40 grayscale" : "opacity-100"}`}
             >
               <AnimatedShinyButton
                 className="px-8 !bg-black !border-white/5 shadow-2xl"
@@ -119,7 +131,7 @@ export default function Skills() {
             </div>
             <div
               onClick={() => setActiveMode("design")}
-              className={`ml-1 cursor-pointer transition-opacity duration-300 ${activeMode !== "design" ? "opacity-30" : "opacity-100"}`}
+              className={`ml-1 cursor-pointer transition-all duration-300 ${activeMode !== "design" ? "opacity-40 grayscale" : "opacity-100"}`}
             >
               <AnimatedShinyButton
                 className="px-8 !bg-black !border-white/5 shadow-2xl"
@@ -132,7 +144,7 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Orbit Path - Light Primary Ring */}
+      {/* Orbit Path - Clean Primary Ring */}
       <div
         className="absolute left-1/2 rounded-full pointer-events-none z-10"
         style={{
@@ -141,32 +153,24 @@ export default function Skills() {
           bottom: "0",
           left: "50%",
           transform: "translate(-50%, 50%)",
-          border: "1px solid rgba(46, 204, 113, 0.4)", // --brand-green with opacity
-          boxShadow:
-            "0 0 40px rgba(46, 204, 113, 0.15), inset 0 0 40px rgba(46, 204, 113, 0.05)",
+          border: "1px solid rgb(16, 252, 114,0.5)", // Subtle primary border
         }}
-      >
-        {/* Secondary Inner Glow */}
-        <div
-          className="absolute inset-0 rounded-full"
-          style={{
-            boxShadow: "0 0 100px rgba(46, 204, 113, 0.1)",
-            border: "0.5px solid rgba(46, 204, 113, 0.1)",
-          }}
-        />
-      </div>
+      />
 
       {/* Skill Icons - Animated Orbit */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {mounted &&
-          skills.map((skill, index) => (
-            <SkillIcon
-              key={skill.name}
-              skill={skill}
-              index={index}
-              rotation={smoothRotation}
-            />
-          ))}
+          (activeMode === "frontend" ? frontendSkills : designSkills).map(
+            (skill, index) => (
+              <SkillIcon
+                key={`${activeMode}-${index}-${skill.name}`}
+                skill={skill}
+                index={index}
+                rotation={smoothRotation}
+                mode={activeMode}
+              />
+            ),
+          )}
       </div>
 
       <style jsx global>{`
@@ -210,12 +214,14 @@ function SkillIcon({
   skill,
   index,
   rotation,
+  mode,
 }: {
   skill: Skill;
   index: number;
   rotation: any;
+  mode: "frontend" | "design";
 }) {
-  const spacing = 30; // 360 / 12 icons
+  const spacing = mode === "frontend" ? 30 : 40; // 30 for 7 visible, 40 for 5 visible
 
   // Infinite wrapping logic
   const angle = useTransform(rotation, (r: number) => {
@@ -241,6 +247,10 @@ function SkillIcon({
   );
   const scale = useTransform(angle, [-90, 0, 90], [0.8, 1.1, 0.8]);
 
+  // Active Glow Effect (peaks at angle 0)
+  const activeGlowOpacity = useTransform(angle, [-20, 0, 20], [0, 0.4, 0]);
+  const activeGlowScale = useTransform(angle, [-20, 0, 20], [0.8, 1.8, 0.8]);
+
   return (
     <motion.div
       style={{
@@ -253,8 +263,19 @@ function SkillIcon({
       }}
       className="absolute flex flex-col items-center gap-4"
     >
+      <motion.div
+        style={{
+          opacity: activeGlowOpacity,
+          scale: activeGlowScale,
+          background: "rgb(16, 252, 114)",
+          filter: "blur(25px)",
+          boxShadow: "0 0 60px rgba(16, 252, 114, 0.5)",
+        }}
+        className="absolute w-14 h-14 rounded-full z-0"
+      />
+
       <div
-        className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 shadow-2xl group"
+        className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 shadow-2xl group z-10"
         style={{ borderRadius: "8px", overflow: "hidden" }}
       >
         <Image
