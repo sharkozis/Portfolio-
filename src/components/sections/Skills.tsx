@@ -21,6 +21,9 @@ const skills = [
   { name: "Tailwind", icon: "/tailwind-icon.svg" },
   { name: "MUI", icon: "/mui-icon.svg" },
   { name: "Kotlin", icon: "/kotlin-icon.svg" },
+  { name: "Compose", icon: "/compose-icon.svg" },
+  { name: "Next.js", icon: "/next-icon.svg" },
+  { name: "TypeScript", icon: "/ts-icon.svg" },
 ];
 
 export default function Skills() {
@@ -33,11 +36,59 @@ export default function Skills() {
     setMounted(true);
   }, []);
 
-  // Static Rotation for perfect placement
-  const rotationValue = 0;
+  // Circle Animation State
+  const rotation = useMotionValue(0);
+  const smoothRotation = useSpring(rotation, {
+    stiffness: 60,
+    damping: 20,
+    mass: 0.8,
+  });
+
+  const handleDrag = (_: any, info: any) => {
+    // factor controls the sensitivity of the drag
+    const factor = 0.15;
+    rotation.set(rotation.get() + info.delta.x * factor);
+  };
+
+  const handleDragEnd = (_: any, info: any) => {
+    const velocity = info.velocity.x;
+    const currentRotation = rotation.get();
+
+    // Snapping logic: targeted for 360/12 = 30 degree spacing
+    const snapSpacing = 30;
+
+    // Project final position based on velocity
+    const projectedRotation = currentRotation + velocity * 0.15;
+    const snapTarget =
+      Math.round(projectedRotation / snapSpacing) * snapSpacing;
+
+    animate(rotation, snapTarget, {
+      type: "spring",
+      stiffness: 80,
+      damping: 20,
+      velocity: velocity * 0.1,
+      restDelta: 0.001,
+    });
+  };
 
   return (
-    <section className="relative w-full min-h-screen overflow-hidden bg-[#050505] font-sans select-none">
+    <section
+      className="relative w-full min-h-screen overflow-hidden bg-[#050505] font-sans select-none"
+      onPointerDown={(e) =>
+        ((e.currentTarget as HTMLElement).style.cursor = "grabbing")
+      }
+      onPointerUp={(e) =>
+        ((e.currentTarget as HTMLElement).style.cursor = "default")
+      }
+    >
+      {/* Invisible Drag Layer */}
+      <motion.div
+        className="absolute inset-0 z-30 cursor-grab"
+        drag="x"
+        dragConstraints={{ left: 0, right: 0 }}
+        onDrag={handleDrag}
+        onDragEnd={handleDragEnd}
+      />
       {/* Very Subtle Dot Background */}
       <div
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
@@ -89,13 +140,13 @@ export default function Skills() {
           aspectRatio: "1/1",
           bottom: "0",
           left: "50%",
-          transform: "translate(-50%, 57.8%)", // center below bottom to show 45% arc
+          transform: "translate(-50%, 50%)", // center exactly at bottom for 50% visibility
         }}
       >
         <div className="absolute inset-0 rounded-full shadow-[0_0_50px_rgba(46,204,113,0.15)]" />
       </div>
 
-      {/* Skill Icons - Static Placement */}
+      {/* Skill Icons - Animated Orbit */}
       <div className="absolute inset-0 pointer-events-none z-20">
         {mounted &&
           skills.map((skill, index) => (
@@ -103,7 +154,7 @@ export default function Skills() {
               key={skill.name}
               skill={skill}
               index={index}
-              rotation={rotationValue}
+              rotation={smoothRotation}
             />
           ))}
       </div>
@@ -152,14 +203,33 @@ function SkillIcon({
 }: {
   skill: Skill;
   index: number;
-  rotation: number;
+  rotation: any;
 }) {
-  const spacing = 18; // degrees between icons for 1000px arc
-  const angle = rotation + (index - 4) * spacing;
+  const spacing = 30; // 360 / 12 icons
 
-  // R = 500 center at 50% width, 100% height + 78px
-  const x = `calc(50% + ${Math.sin((angle * Math.PI) / 180) * 500}px)`;
-  const y = `calc(100% + 78px - ${Math.cos((angle * Math.PI) / 180) * 500}px)`;
+  // Infinite wrapping logic
+  const angle = useTransform(rotation, (r: number) => {
+    const baseAngle = r + index * spacing;
+    return ((((baseAngle + 180) % 360) + 360) % 360) - 180;
+  });
+
+  // R = 500 center at 50% width, 100% height
+  const x = useTransform(
+    angle,
+    (a: number) => `calc(50% + ${Math.sin((a * Math.PI) / 180) * 500}px)`,
+  );
+  const y = useTransform(
+    angle,
+    (a: number) => `calc(100% - ${Math.cos((a * Math.PI) / 180) * 500}px)`,
+  );
+
+  // Wider visibility range for the 50% arc
+  const opacity = useTransform(
+    angle,
+    [-150, -110, -100, 100, 110, 150],
+    [0, 0, 1, 1, 0, 0],
+  );
+  const scale = useTransform(angle, [-90, 0, 90], [0.8, 1.1, 0.8]);
 
   return (
     <motion.div
@@ -168,6 +238,8 @@ function SkillIcon({
         top: y,
         x: "-50%",
         y: "-50%",
+        opacity,
+        scale,
       }}
       className="absolute flex flex-col items-center gap-4"
     >
@@ -185,12 +257,17 @@ function SkillIcon({
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-20 z-20" />
       </div>
 
-      {/* Title Chip */}
-      <div className="px-4 py-1.5 bg-zinc-900 border border-emerald-500/20 rounded-full shadow-lg">
+      {/* Title Chip - Only visible near center */}
+      <motion.div
+        style={{
+          opacity: useTransform(angle, [-15, 0, 15], [0, 1, 0]),
+        }}
+        className="px-4 py-1.5 bg-zinc-900 border border-emerald-500/20 rounded-full shadow-lg"
+      >
         <span className="text-[12px] font-bold text-[#2ecc71] uppercase tracking-widest whitespace-nowrap">
           {skill.name}
         </span>
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
