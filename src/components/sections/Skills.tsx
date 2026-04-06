@@ -174,16 +174,15 @@ function SkillIcon({
       }}
       className="absolute flex flex-col items-center gap-4"
     >
-      <div className="relative w-20 h-20 bg-[#0a0a0a] border border-white/10 rounded-[14px] flex items-center justify-center shadow-2xl group overflow-hidden">
+      <div className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 rounded-[14px] shadow-2xl group overflow-hidden">
         <Image
           src={skill.icon}
           alt={skill.name}
-          width={45}
-          height={45}
-          className="object-contain z-10"
+          fill
+          className="object-cover z-10"
         />
-        {/* Glow & Reflection */}
-        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
+        {/* Subtle Overlay Glow */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-20 z-20" />
       </div>
 
       {/* Title Chip */}
