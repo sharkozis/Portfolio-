@@ -49,12 +49,12 @@ export default function Skills() {
 
       <div className="relative z-10 container mx-auto px-12 md:px-24 pt-16 md:pt-30 flex flex-col max-w-7xl">
         {/* Header and Toggle Button Group */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8">
+        <div className="flex flex-col items-start mb-16 gap-6">
           <h2 className="text-[var(--brand-green)] text-5xl md:text-6xl font-extrabold uppercase tracking-tight">
             Skills
           </h2>
 
-          <div className="flex bg-[#111] p-1 rounded-full border border-white/5 shadow-2xl relative self-center">
+          <div className="flex bg-[#111] p-1 rounded-full border border-white/5 shadow-2xl relative">
             <div
               onClick={() => setActiveMode("frontend")}
               className={`cursor-pointer transition-opacity duration-300 ${activeMode !== "frontend" ? "opacity-30" : "opacity-100"}`}
@@ -78,9 +78,6 @@ export default function Skills() {
               </AnimatedShinyButton>
             </div>
           </div>
-
-          {/* Spacer for alignment balance */}
-          <div className="w-20 hidden md:block" />
         </div>
       </div>
 
