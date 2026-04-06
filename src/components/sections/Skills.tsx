@@ -107,7 +107,7 @@ export default function Skills() {
         className="absolute inset-0 opacity-[0.03] pointer-events-none"
         style={{
           backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
-          backgroundSize: "32px 32px",
+          backgroundSize: "16px 16px",
         }}
       />
 
