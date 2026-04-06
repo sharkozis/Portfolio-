@@ -102,11 +102,11 @@ export default function Skills() {
         onDrag={handleDrag}
         onDragEnd={handleDragEnd}
       />
-      {/* Very Subtle Dot Background */}
+      {/* Dot Background - Subdued */}
       <div
-        className="absolute inset-0 opacity-[0.03] pointer-events-none"
+        className="absolute inset-0 opacity-[0.2] pointer-events-none"
         style={{
-          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.15) 1px, transparent 0)`,
+          backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
           backgroundSize: "16px 16px",
         }}
       />
@@ -118,15 +118,9 @@ export default function Skills() {
             Skills
           </h2>
 
-          <div className="flex !bg-[#EDEDED] py-2 px-3 rounded-xl border border-white/20 relative gap-2 items-center">
+          <div className="flex bg-white/10 py-2 px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
             {activeMode === "frontend" ? (
-              <motion.div
-                layout
-                initial={{ opacity: 0.5 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="relative cursor-default"
-              >
+              <motion.div className="relative cursor-default">
                 <AnimatedShinyButton
                   className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
                   active={true}
@@ -140,26 +134,16 @@ export default function Skills() {
                 </div>
               </motion.div>
             ) : (
-              <motion.button
-                layout
+              <button
                 onClick={() => setActiveMode("frontend")}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="px-8 py-2.5 rounded-lg text-black/20 font-bold transition-all duration-300 hover:text-black/40"
+                className="px-8 py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
               >
                 Frontend
-              </motion.button>
+              </button>
             )}
 
             {activeMode === "design" ? (
-              <motion.div
-                layout
-                initial={{ opacity: 0.5 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="relative cursor-default"
-              >
+              <motion.div className="relative cursor-default">
                 <AnimatedShinyButton
                   className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
                   active={true}
@@ -173,16 +157,12 @@ export default function Skills() {
                 </div>
               </motion.div>
             ) : (
-              <motion.button
-                layout
+              <button
                 onClick={() => setActiveMode("design")}
-                initial={{ opacity: 0.8 }}
-                animate={{ opacity: 1 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="px-8 py-2.5 rounded-lg text-black/20 font-bold transition-all duration-300 hover:text-black/40"
+                className="px-8 py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
               >
                 Design
-              </motion.button>
+              </button>
             )}
           </div>
         </div>
@@ -343,14 +323,14 @@ function SkillIcon({
         <div className="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-20 z-20" />
       </div>
 
-      {/* Title Chip - Only visible near center */}
+      {/* Title Chip - White theme for selection */}
       <motion.div
         style={{
           opacity: useTransform(angle, [-15, 0, 15], [0, 1, 0]),
         }}
-        className="px-4 py-1.5 bg-zinc-900 border border-emerald-500/20 rounded-full shadow-lg"
+        className="px-4 py-1.5 border border-white rounded-full  relative z-30"
       >
-        <span className="text-[12px] font-bold text-[#2ecc71] uppercase tracking-widest whitespace-nowrap">
+        <span className="text-[10px] text-white uppercase tracking-widest whitespace-nowrap">
           {skill.name}
         </span>
       </motion.div>
