@@ -57,16 +57,16 @@ export default function Skills() {
     // Snapping logic: targeted for 360/12 = 30 degree spacing
     const snapSpacing = 30;
 
-    // Project final position based on velocity
-    const projectedRotation = currentRotation + velocity * 0.15;
+    // Project final position (much shorter for snappy 'Snap-to-Slot' feel)
+    const projectedRotation = currentRotation + velocity * 0.04;
     const snapTarget =
       Math.round(projectedRotation / snapSpacing) * snapSpacing;
 
     animate(rotation, snapTarget, {
       type: "spring",
-      stiffness: 80,
-      damping: 20,
-      velocity: velocity * 0.1,
+      stiffness: 120, // higher stiffness for snappy response
+      damping: 20, // lower damping for active movement
+      velocity: velocity * 0.04,
       restDelta: 0.001,
     });
   };
@@ -132,18 +132,28 @@ export default function Skills() {
         </div>
       </div>
 
-      {/* Orbit Path - Positioned at section bottom */}
+      {/* Orbit Path - Light Primary Ring */}
       <div
-        className="absolute left-1/2 border border-emerald-500/20 rounded-full pointer-events-none z-10"
+        className="absolute left-1/2 rounded-full pointer-events-none z-10"
         style={{
           width: "min(1000px, 95vw)",
           aspectRatio: "1/1",
           bottom: "0",
           left: "50%",
-          transform: "translate(-50%, 50%)", // center exactly at bottom for 50% visibility
+          transform: "translate(-50%, 50%)",
+          border: "1px solid rgba(46, 204, 113, 0.4)", // --brand-green with opacity
+          boxShadow:
+            "0 0 40px rgba(46, 204, 113, 0.15), inset 0 0 40px rgba(46, 204, 113, 0.05)",
         }}
       >
-        <div className="absolute inset-0 rounded-full shadow-[0_0_50px_rgba(46,204,113,0.15)]" />
+        {/* Secondary Inner Glow */}
+        <div
+          className="absolute inset-0 rounded-full"
+          style={{
+            boxShadow: "0 0 100px rgba(46, 204, 113, 0.1)",
+            border: "0.5px solid rgba(46, 204, 113, 0.1)",
+          }}
+        />
       </div>
 
       {/* Skill Icons - Animated Orbit */}
