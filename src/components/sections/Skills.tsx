@@ -171,7 +171,10 @@ function SkillIcon({
       }}
       className="absolute flex flex-col items-center gap-4"
     >
-      <div className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 rounded-[14px] shadow-2xl group overflow-hidden">
+      <div
+        className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 shadow-2xl group"
+        style={{ borderRadius: "8px", overflow: "hidden" }}
+      >
         <Image
           src={skill.icon}
           alt={skill.name}
