@@ -182,6 +182,7 @@ export function AnimatedShinyButton({
             var(--animation) var(--duration),
             var(--animation) calc(var(--duration) / 0.4) reverse paused;
           animation-composition: add;
+          animation-play-state: ${active ? "running" : "paused"};
         }
 
         .shiny-cta:is(:hover, :focus-visible),
