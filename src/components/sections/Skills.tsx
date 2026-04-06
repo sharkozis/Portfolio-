@@ -1,12 +1,40 @@
 "use client";
-
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import {
+  motion,
+  useMotionValue,
+  useSpring,
+  useTransform,
+  animate,
+  useMotionValueEvent,
+} from "framer-motion";
 import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
+import Image from "next/image";
+
+const skills = [
+  { name: "Compose", icon: "/compose-icon.svg" },
+  { name: "Next.js", icon: "/next-icon.svg" },
+  { name: "TypeScript", icon: "/ts-icon.svg" },
+  { name: "React", icon: "/react-icon.svg" },
+  { name: "JavaScript", icon: "/js-icon.svg" },
+  { name: "CSS", icon: "/css-icon.svg" },
+  { name: "Tailwind", icon: "/tailwind-icon.svg" },
+  { name: "MUI", icon: "/mui-icon.svg" },
+  { name: "Kotlin", icon: "/kotlin-icon.svg" },
+];
 
 export default function Skills() {
   const [activeMode, setActiveMode] = useState<"frontend" | "design">(
     "frontend",
   );
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Static Rotation for perfect placement
+  const rotationValue = 0;
 
   return (
     <section className="relative w-full min-h-screen overflow-hidden bg-[#050505] font-sans select-none">
@@ -69,6 +97,101 @@ export default function Skills() {
       >
         <div className="absolute inset-0 rounded-full shadow-[0_0_50px_rgba(46,204,113,0.15)]" />
       </div>
+
+      {/* Skill Icons - Static Placement */}
+      <div className="absolute inset-0 pointer-events-none z-20">
+        {mounted &&
+          skills.map((skill, index) => (
+            <SkillIcon
+              key={skill.name}
+              skill={skill}
+              index={index}
+              rotation={rotationValue}
+            />
+          ))}
+      </div>
+
+      <style jsx global>{`
+        @keyframes shine {
+          0% {
+            left: -100%;
+            opacity: 0;
+          }
+          50% {
+            opacity: 0.5;
+          }
+          100% {
+            left: 100%;
+            opacity: 0;
+          }
+        }
+        .icon-shine-effect {
+          position: absolute;
+          top: 0;
+          width: 50%;
+          height: 100%;
+          background: linear-gradient(
+            to right,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent
+          );
+          animation: shine 2s infinite;
+        }
+      `}</style>
     </section>
+  );
+}
+
+type Skill = {
+  name: string;
+  icon: string;
+};
+
+function SkillIcon({
+  skill,
+  index,
+  rotation,
+}: {
+  skill: Skill;
+  index: number;
+  rotation: number;
+}) {
+  const spacing = 18; // degrees between icons for 1000px arc
+  const angle = rotation + (index - 4) * spacing;
+
+  // R = 500 center at 50% width, 100% height + 78px
+  const x = `calc(50% + ${Math.sin((angle * Math.PI) / 180) * 500}px)`;
+  const y = `calc(100% + 78px - ${Math.cos((angle * Math.PI) / 180) * 500}px)`;
+
+  return (
+    <motion.div
+      style={{
+        left: x,
+        top: y,
+        x: "-50%",
+        y: "-50%",
+      }}
+      className="absolute flex flex-col items-center gap-4"
+    >
+      <div className="relative w-20 h-20 bg-[#0a0a0a] border border-white/10 rounded-[14px] flex items-center justify-center shadow-2xl group overflow-hidden">
+        <Image
+          src={skill.icon}
+          alt={skill.name}
+          width={45}
+          height={45}
+          className="object-contain z-10"
+        />
+        {/* Glow & Reflection */}
+        <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-50" />
+      </div>
+
+      {/* Title Chip */}
+      <div className="px-4 py-1.5 bg-zinc-900 border border-emerald-500/20 rounded-full shadow-lg">
+        <span className="text-[12px] font-bold text-[#2ecc71] uppercase tracking-widest whitespace-nowrap">
+          {skill.name}
+        </span>
+      </div>
+    </motion.div>
   );
 }
