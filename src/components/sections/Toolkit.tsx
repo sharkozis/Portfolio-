@@ -19,7 +19,7 @@ const tools = [
   { name: "Python", level: "Intermediate", category: "frontend" },
 ];
 
-export default function Toolkit() {
+export default function Skills() {
   const [activeMode, setActiveMode] = useState<"frontend" | "design">(
     "frontend",
   );
@@ -34,12 +34,12 @@ export default function Toolkit() {
           <div className="sticky top-40 w-full lg:w-1/3 space-y-8">
             <div className="space-y-4">
               <span className="text-blue-500 font-mono text-[10px] tracking-[0.6em] uppercase font-bold">
-                The Specs
+                Capabilities
               </span>
               <h2 className="text-6xl md:text-8xl font-black text-white leading-[0.85] uppercase tracking-tighter">
                 Technical
                 <br />
-                Toolkit
+                Skills
               </h2>
             </div>
             <p className="text-zinc-500 text-lg max-w-sm">
@@ -47,21 +47,27 @@ export default function Toolkit() {
               design and development.
             </p>
 
-            {/* Toggle Buttons Area (Replaced Version Area) */}
+            {/* Toggle Buttons Area */}
             <div className="flex bg-white/5 p-1 rounded-2xl border border-white/10 backdrop-blur-md z-20 self-start w-fit">
               <div
                 onClick={() => setActiveMode("frontend")}
                 className={`cursor-pointer transition-opacity duration-300 ${activeMode !== "frontend" ? "opacity-30 hover:opacity-100" : ""}`}
               >
-                <AnimatedShinyButton className="px-8 shadow-2xl">
+                <AnimatedShinyButton
+                  className="px-8 shadow-2xl"
+                  active={activeMode === "frontend"}
+                >
                   Frontend
                 </AnimatedShinyButton>
               </div>
               <div
                 onClick={() => setActiveMode("design")}
-                className={`ml-1 cursor-pointer transition-opacity duration-300 ${activeMode !== "design" ? "opacity-30 hover:opacity-100" : ""}`}
+                className={`ml-1 cursor-pointer transition-opacity duration-300 ${activeMode !== "design" ? "opacity-30 hover:opacity-100" : "opacity-100"}`}
               >
-                <AnimatedShinyButton className="px-8 shadow-2xl">
+                <AnimatedShinyButton
+                  className="px-8 shadow-2xl"
+                  active={activeMode === "design"}
+                >
                   Design
                 </AnimatedShinyButton>
               </div>

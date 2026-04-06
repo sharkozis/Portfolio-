@@ -7,12 +7,14 @@ interface AnimatedShinyButtonProps {
   children: React.ReactNode;
   className?: string;
   url?: string;
+  active?: boolean;
 }
 
 export function AnimatedShinyButton({
   children,
   className = "",
   url,
+  active = true,
 }: AnimatedShinyButtonProps) {
   return (
     <>
@@ -184,9 +186,11 @@ export function AnimatedShinyButton({
 
         .shiny-cta:is(:hover, :focus-visible),
         .shiny-cta-link:is(:hover, :focus-visible) {
-          --gradient-percent: 20%;
-          --gradient-angle-offset: 95deg;
-          --gradient-shine: var(--shiny-cta-highlight-subtle);
+          --gradient-percent: ${active ? "20%" : "5%"};
+          --gradient-angle-offset: ${active ? "95deg" : "0deg"};
+          --gradient-shine: ${active
+            ? "var(--shiny-cta-highlight-subtle)"
+            : "white"};
         }
 
         .shiny-cta:is(:hover, :focus-visible),
@@ -195,12 +199,12 @@ export function AnimatedShinyButton({
         .shiny-cta-link:is(:hover, :focus-visible),
         .shiny-cta-link:is(:hover, :focus-visible)::before,
         .shiny-cta-link:is(:hover, :focus-visible)::after {
-          animation-play-state: running;
+          animation-play-state: ${active ? "running" : "paused"};
         }
 
         .shiny-cta:is(:hover, :focus-visible) span::before,
         .shiny-cta-link:is(:hover, :focus-visible) span::before {
-          opacity: 1;
+          opacity: ${active ? "1" : "0"};
         }
 
         @keyframes gradient-angle {
