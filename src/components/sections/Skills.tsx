@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import {
   motion,
+  AnimatePresence,
   useMotionValue,
   useSpring,
   useTransform,
@@ -12,18 +13,18 @@ import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import Image from "next/image";
 
 const frontendSkills = [
-  { name: "Compose", icon: "/compose-icon.svg" },
-  { name: "Next.js", icon: "/next-icon.svg" },
-  { name: "TypeScript", icon: "/ts-icon.svg" },
-  { name: "React", icon: "/react-icon.svg" },
   { name: "JavaScript", icon: "/js-icon.svg" },
   { name: "CSS", icon: "/css-icon.svg" },
   { name: "Tailwind", icon: "/tailwind-icon.svg" },
   { name: "MUI", icon: "/mui-icon.svg" },
   { name: "Kotlin", icon: "/kotlin-icon.svg" },
-  { name: "Compose", icon: "/compose-icon.svg" },
+  { name: "Jetpack Compose", icon: "/compose-icon.svg" },
   { name: "Next.js", icon: "/next-icon.svg" },
   { name: "TypeScript", icon: "/ts-icon.svg" },
+  { name: "React Js", icon: "/react-icon.svg" },
+  { name: "JavaScript", icon: "/js-icon.svg" },
+  { name: "CSS", icon: "/css-icon.svg" },
+  { name: "Tailwind", icon: "/tailwind-icon.svg" },
 ];
 
 const designSkills = [
@@ -117,29 +118,72 @@ export default function Skills() {
             Skills
           </h2>
 
-          <div className="flex bg-[#111] p-1 rounded-full border border-white/5 shadow-2xl relative">
-            <div
-              onClick={() => setActiveMode("frontend")}
-              className={`cursor-pointer transition-all duration-300 ${activeMode !== "frontend" ? "opacity-40 grayscale" : "opacity-100"}`}
-            >
-              <AnimatedShinyButton
-                className="px-8 !bg-black !border-white/5 shadow-2xl"
-                active={activeMode === "frontend"}
+          <div className="flex !bg-[#EDEDED] py-2 px-3 rounded-xl border border-white/20 relative gap-2 items-center">
+            {activeMode === "frontend" ? (
+              <motion.div
+                layout
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="relative cursor-default"
+              >
+                <AnimatedShinyButton
+                  className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
+                  active={true}
+                  showIcon={false}
+                >
+                  Frontend
+                </AnimatedShinyButton>
+                <div className="absolute -top-1 -right-1 flex h-3 w-3 z-30">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--brand-green)] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--brand-green)] shadow-[0_0_10px_var(--brand-green)]"></span>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.button
+                layout
+                onClick={() => setActiveMode("frontend")}
+                initial={{ opacity: 0.8 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="px-8 py-2.5 rounded-lg text-black/20 font-bold transition-all duration-300 hover:text-black/40"
               >
                 Frontend
-              </AnimatedShinyButton>
-            </div>
-            <div
-              onClick={() => setActiveMode("design")}
-              className={`ml-1 cursor-pointer transition-all duration-300 ${activeMode !== "design" ? "opacity-40 grayscale" : "opacity-100"}`}
-            >
-              <AnimatedShinyButton
-                className="px-8 !bg-black !border-white/5 shadow-2xl"
-                active={activeMode === "design"}
+              </motion.button>
+            )}
+
+            {activeMode === "design" ? (
+              <motion.div
+                layout
+                initial={{ opacity: 0.5 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="relative cursor-default"
+              >
+                <AnimatedShinyButton
+                  className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
+                  active={true}
+                  showIcon={false}
+                >
+                  Design
+                </AnimatedShinyButton>
+                <div className="absolute -top-1 -right-1 flex h-3 w-3 z-30">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[var(--brand-green)] opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-3 w-3 bg-[var(--brand-green)] shadow-[0_0_10px_var(--brand-green)]"></span>
+                </div>
+              </motion.div>
+            ) : (
+              <motion.button
+                layout
+                onClick={() => setActiveMode("design")}
+                initial={{ opacity: 0.8 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.5, ease: "easeInOut" }}
+                className="px-8 py-2.5 rounded-lg text-black/20 font-bold transition-all duration-300 hover:text-black/40"
               >
                 Design
-              </AnimatedShinyButton>
-            </div>
+              </motion.button>
+            )}
           </div>
         </div>
       </div>
@@ -159,18 +203,29 @@ export default function Skills() {
 
       {/* Skill Icons - Animated Orbit */}
       <div className="absolute inset-0 pointer-events-none z-20">
-        {mounted &&
-          (activeMode === "frontend" ? frontendSkills : designSkills).map(
-            (skill, index) => (
-              <SkillIcon
-                key={`${activeMode}-${index}-${skill.name}`}
-                skill={skill}
-                index={index}
-                rotation={smoothRotation}
-                mode={activeMode}
-              />
-            ),
-          )}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeMode}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.6, ease: "easeInOut" }}
+            className="absolute inset-0"
+          >
+            {mounted &&
+              (activeMode === "frontend" ? frontendSkills : designSkills).map(
+                (skill, index) => (
+                  <SkillIcon
+                    key={`${activeMode}-${skill.name}-${index}`}
+                    skill={skill}
+                    index={index}
+                    rotation={smoothRotation}
+                    mode={activeMode}
+                  />
+                ),
+              )}
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       <style jsx global>{`

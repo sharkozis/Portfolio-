@@ -8,6 +8,7 @@ interface AnimatedShinyButtonProps {
   className?: string;
   url?: string;
   active?: boolean;
+  showIcon?: boolean;
 }
 
 export function AnimatedShinyButton({
@@ -15,6 +16,7 @@ export function AnimatedShinyButton({
   className = "",
   url,
   active = true,
+  showIcon = true,
 }: AnimatedShinyButtonProps) {
   return (
     <>
@@ -247,14 +249,18 @@ export function AnimatedShinyButton({
         <a href={url} className={`shiny-cta-link group ${className}`}>
           <span className="flex items-center">
             {children}
-            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            {showIcon && (
+              <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            )}
           </span>
         </a>
       ) : (
         <button className={`shiny-cta group ${className}`}>
           <span className="flex items-center">
             {children}
-            <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            {showIcon && (
+              <ChevronRight className="ml-1 size-4 shrink-0 transition-all duration-300 ease-out group-hover:translate-x-1" />
+            )}
           </span>
         </button>
       )}
