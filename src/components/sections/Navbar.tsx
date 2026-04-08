@@ -1,6 +1,6 @@
 "use client";
 
-import { Home, User, Cpu, FolderKanban, Mail } from "lucide-react";
+import { House, User, Code2, Briefcase, Mail } from "lucide-react";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -8,7 +8,7 @@ import { useState, useEffect } from "react";
 const navItems = [
   {
     title: "Home",
-    icon: <Home className="h-full w-full" />,
+    icon: <House className="h-full w-full" />,
     href: "#home",
   },
   {
@@ -18,12 +18,12 @@ const navItems = [
   },
   {
     title: "Skills",
-    icon: <Cpu className="h-full w-full" />,
+    icon: <Code2 className="h-full w-full" />,
     href: "#skills",
   },
   {
     title: "Projects",
-    icon: <FolderKanban className="h-full w-full" />,
+    icon: <Briefcase className="h-full w-full" />,
     href: "#projects",
   },
   {
