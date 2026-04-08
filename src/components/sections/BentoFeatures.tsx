@@ -8,6 +8,7 @@ const gridItems = [
     id: 1,
     spanClass: "md:col-span-1 lg:col-span-1 md:row-span-2 lg:row-span-2",
     hasImage: true,
+    imageSrc: "/app-1.png",
     title: "Mobile App",
     description:
       "This is a mobile app for a company called Empty Marketplace App. This app is used rent cars and for drivers to get their payment via this app.",
@@ -29,18 +30,25 @@ const gridItems = [
   },
   {
     id: 5,
-    spanClass: "md:col-span-1 lg:col-span-1",
-    title: "E-Commerce",
-    description: "High-conversion headless storefront.",
-    tools: ["Shopify", "Remix", "Tailwind"],
+    spanClass: "md:col-span-1 lg:col-span-1 md:row-span-2 lg:row-span-2",
+    hasImage: true,
+    imageSrc: "/app-2.png",
+    title: "Figma Dashboard",
+    description:
+      "This is a dashboard for a company called Walsh. This dashboard is used to manage the hospital accounts and their services.",
+    tools: ["Figma"],
   },
   {
     id: 6,
     spanClass: "md:col-span-2 lg:col-span-2",
-    title: "Quantum UI System",
+    hasImage: true,
+    imageSrc: "/shoe poster.png",
+    paddingClass: "p-0",
+    imageClass: "object-cover",
+    title: "Shoe Poster",
     description:
-      "A high-performance motion design system capable of maintaining 60fps across complex web animations.",
-    tools: ["Framer Motion", "React", "WebGL"],
+      "This is a poster for a shoe company called TRIOT. This poster is used to promote the new shoe.",
+    tools: ["Illustrator", "Canva"],
   },
   {
     id: 7,
@@ -70,13 +78,6 @@ const gridItems = [
     description: "Community-driven content aggregator.",
     tools: ["React", "Firebase", "Tailwind"],
   },
-  {
-    id: 11,
-    spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Web3 Wallet",
-    description: "Secure, non-custodial crypto wallet interface.",
-    tools: ["Ethers.js", "Next.js", "Tailwind"],
-  },
 ];
 
 export default function BentoFeatures() {
@@ -98,16 +99,16 @@ export default function BentoFeatures() {
             >
               {/* Image Holder */}
               <div
-                className={`absolute inset-0 z-0 ${item.hasImage ? "px-4 py-3" : ""}`}
+                className={`absolute inset-0 z-0 ${item.hasImage ? item.paddingClass || "px-4 py-3" : ""}`}
               >
                 <div className="relative w-full h-full">
                   <Image
-                    src="/app-1.png"
+                    src={item.imageSrc || "/app-1.png"}
                     alt={`Bento placeholder ${item.id}`}
                     fill
                     className={`transition-opacity duration-700 ease-out ${
                       item.hasImage
-                        ? "object-contain opacity-90"
+                        ? `${item.imageClass || "object-contain"} opacity-90`
                         : "object-cover opacity-60 grayscale group-hover:opacity-30"
                     }`}
                   />
@@ -124,11 +125,11 @@ export default function BentoFeatures() {
                   <h3 className="text-xl font-bold text-white tracking-widest uppercase truncate">
                     {item.title}
                   </h3>
-                  <p className="text-zinc-300 text-xs leading-relaxed mb-1 line-clamp-2">
+                  <p className="text-zinc-400 text-xs leading-tight mb-1">
                     {item.description}
                   </p>
                   <div className="flex flex-wrap gap-2 mt-1">
-                    {item.tools.map((tool, i) => (
+                    {item.tools?.map((tool, i) => (
                       <span
                         key={i}
                         className="text-[10px] font-mono text-[var(--brand-green)] uppercase tracking-tighter"
