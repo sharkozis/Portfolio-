@@ -25,30 +25,6 @@ const projects = [
     stack: [],
     image: "/coming soon.png",
   },
-  {
-    title: "Coming Soon",
-    tag: "",
-    description: "",
-    role: "",
-    stack: [],
-    image: "/coming soon.png",
-  },
-  {
-    title: "Coming Soon",
-    tag: "",
-    description: "",
-    role: "",
-    stack: [],
-    image: "/coming soon.png",
-  },
-  {
-    title: "Coming Soon",
-    tag: "",
-    description: "",
-    role: "",
-    stack: [],
-    image: "/coming soon.png",
-  },
 ];
 
 export default function Projects() {
@@ -58,13 +34,13 @@ export default function Projects() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-95%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
   return (
     <section
       id="projects"
       ref={targetRef}
-      className="relative h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative h-[300vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-24">
         {/* Section Header */}
