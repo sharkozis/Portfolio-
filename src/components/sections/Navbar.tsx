@@ -73,7 +73,12 @@ export function Navbar() {
               onClick={() => {
                 const element = document.getElementById(item.href.substring(1));
                 if (element) {
-                  element.scrollIntoView({ behavior: "smooth" });
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo(element, { offset: 0, duration: 1.5 });
+                  } else {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
                 }
               }}
               className="aspect-square transition-colors"

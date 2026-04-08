@@ -18,6 +18,7 @@ export default function SmoothScroll({
     });
 
     lenisRef.current = lenis;
+    (window as any).lenis = lenis;
 
     function raf(time: number) {
       lenis.raf(time);
@@ -28,6 +29,7 @@ export default function SmoothScroll({
 
     return () => {
       lenis.destroy();
+      (window as any).lenis = null;
     };
   }, []);
 
