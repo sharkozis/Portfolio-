@@ -4,6 +4,7 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
 import { LivePreviewButton } from "../ui/LivePreviewButton";
+import { FlipWords } from "../ui/FlipWords";
 
 const projects = [
   {
@@ -61,25 +62,26 @@ export default function Projects() {
   const targetRef = useRef(null);
   const { scrollYProgress } = useScroll({
     target: targetRef,
+    offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-75%"]);
+  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-95%"]);
 
   return (
     <section
       id="projects"
       ref={targetRef}
-      className="relative h-[400vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-24">
         {/* Section Header */}
-        <div className="container mx-auto px-12 md:px-24 mb-16 flex justify-between items-end max-w-7xl">
+        <div className="container mx-auto px-12 md:px-24 mb-24 flex justify-between items-end max-w-7xl">
           <div className="space-y-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 mt-80"
             >
               <div className="h-[1px] w-8 bg-[var(--brand-green)]" />
               <span className="text-[var(--brand-green)] font-mono text-xs tracking-[0.4em] uppercase font-bold">
@@ -92,7 +94,12 @@ export default function Projects() {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter"
             >
-              Showroom<span className="text-[var(--brand-green)]">.</span>
+              <div className="text-9xl mx-auto">
+                <FlipWords
+                  words={["Frontend", "Design"]}
+                  className="text-white"
+                />
+              </div>
             </motion.h2>
           </div>
 
@@ -185,10 +192,10 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       <div className="absolute inset-0 z-20 p-8 md:px-12 flex flex-col justify-center">
         <div className=" max-w-xl opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
           <div className="space-y-1">
-            <h1 className="text-3xl md:text-9xl font-black text-white uppercase tracking-tighter transition-colors duration-500">
+            <h1 className="text-3xl md:text-6xl font-black text-white uppercase tracking-tighter transition-colors duration-500">
               {project.title}
             </h1>
-            <p className="text-zinc-400 text-xs md:text-lg font-light leading-tight max-w-lg my-8">
+            <p className="text-zinc-400 text-xs md:text-lg font-light leading-tight max-w-lg mt-2 mb-8">
               {project.description}
             </p>
           </div>
