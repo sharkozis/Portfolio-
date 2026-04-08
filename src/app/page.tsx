@@ -2,6 +2,7 @@ import Hero from "@/components/sections/Hero";
 import AboutSection from "@/components/sections/about/AboutSection";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
+import BentoFeatures from "@/components/sections/BentoFeatures";
 import Handshake from "@/components/sections/Handshake";
 import { Navbar } from "@/components/sections/Navbar";
 
@@ -17,6 +18,7 @@ export default function Home() {
       <AboutSection />
       <Skills />
       <Projects />
+      <BentoFeatures />
       <Handshake />
       <Navbar />
     </main>
