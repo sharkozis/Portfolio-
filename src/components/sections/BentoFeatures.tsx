@@ -8,6 +8,7 @@ const gridItems = [
     id: 1,
     spanClass: "md:col-span-1 lg:col-span-1 md:row-span-2 lg:row-span-2",
     hasImage: true,
+    isMobileApp: true,
     imageSrc: "/app-1.png",
     title: "Mobile App",
     description:
@@ -17,21 +18,30 @@ const gridItems = [
   {
     id: 3,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Design System",
-    description: "Component library powering the enterprise ecosystem.",
-    tools: ["React", "Storybook", "Figma"],
+    hasImage: true,
+    imageSrc: "/ruins.png",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "3D Design",
+    description: "a 3d based scene design",
+    tools: ["Blender"],
   },
   {
     id: 4,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "AI Dashboard",
-    description: "Data visualization tracking neural net performance metrics.",
-    tools: ["D3.js", "Next.js", "Python"],
+    hasImage: true,
+    imageSrc: "/game scene.png",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "3D Design",
+    description: "a 3d based scene design",
+    tools: ["Blender"],
   },
   {
     id: 5,
     spanClass: "md:col-span-1 lg:col-span-1 md:row-span-2 lg:row-span-2",
     hasImage: true,
+    isMobileApp: true,
     imageSrc: "/app-2.png",
     title: "Figma Dashboard",
     description:
@@ -53,30 +63,46 @@ const gridItems = [
   {
     id: 7,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Fintech App",
-    description: "Real-time trading analytics with sub-millisecond precision.",
-    tools: ["WebSockets", "Node.js", "Redis"],
+    hasImage: true,
+    imageSrc: "/poster1.png",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "Typography Concept",
+    description: "Experimental poster layout focusing on bold letterforms.",
+    tools: ["Illustrator"],
   },
   {
     id: 8,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Marketing Site",
-    description: "Interactive landing page with dynamic scroll stories.",
-    tools: ["GSAP", "Three.js", "Next.js"],
+    hasImage: true,
+    imageSrc: "/poster2.png",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "Event Campaign",
+    description: "Visual identity campaign for underground music festival.",
+    tools: ["Photoshop", "After Effects"],
   },
   {
     id: 9,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Admin Panel",
-    description: "Internal tools combining data management and CRM.",
-    tools: ["React Admin", "GraphQL", "Prisma"],
+    hasImage: true,
+    imageSrc: "/poster3.jpg",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "Abstract Art",
+    description: "Procedural geometry generation and composition.",
+    tools: ["Cinema 4D", "Octane"],
   },
   {
     id: 10,
     spanClass: "md:col-span-1 lg:col-span-1",
-    title: "Social Platform",
-    description: "Community-driven content aggregator.",
-    tools: ["React", "Firebase", "Tailwind"],
+    hasImage: true,
+    imageSrc: "/poster4.png",
+    imageClass: "object-cover",
+    paddingClass: "p-0",
+    title: "Cyberpunk Aesthetic",
+    description: "Neon composite blending photography and digital painting.",
+    tools: ["Procreate", "Photoshop"],
   },
 ];
 
@@ -92,9 +118,9 @@ export default function BentoFeatures() {
               transition={{ duration: 0.5, delay: index * 0.05 }}
               key={item.id}
               className={`group relative bg-[#0a0a0a] overflow-hidden rounded-3xl transition-colors duration-500 border ${item.spanClass} ${
-                item.hasImage
+                item.isMobileApp
                   ? "border-[var(--brand-green)]/40 group-hover:border-[var(--brand-green)]"
-                  : "border-white/10 group-hover:border-[var(--brand-green)]"
+                  : "border-white/10 group-hover:border-white/20"
               }`}
             >
               {/* Image Holder */}
