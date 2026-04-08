@@ -91,9 +91,9 @@ export default function Projects() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-6xl md:text-8xl font-black text-white uppercase tracking-tighter"
+              className="text-6xl md:text-6xl font-black text-white uppercase tracking-tighter"
             >
-              <div className="text-9xl mx-auto">
+              <div className="">
                 <FlipWords
                   words={["Frontend", "Design"]}
                   className="text-white"
@@ -103,9 +103,9 @@ export default function Projects() {
           </div>
 
           <div className="hidden md:flex flex-col items-end gap-2">
-            <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
-              Project Archive
-            </span>
+            {/* <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
+              Projects
+            </span> */}
             <div className="flex gap-1">
               {projects.map((_, i) => (
                 <motion.div
