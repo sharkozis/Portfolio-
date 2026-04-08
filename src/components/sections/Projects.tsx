@@ -74,67 +74,67 @@ export default function Projects() {
       className="relative h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-24">
-        {/* Section Header */}
+          {/* Section Header */}
         <div className="container mx-auto px-12 md:px-24 mb-24 flex justify-between items-end max-w-7xl">
-          <div className="space-y-4">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6 }}
-              className="flex items-center gap-2 mt-80"
-            >
-              <span className="text-[#4cd964] font-medium">
-                Driver D: \portolio \Projects &gt;
-              </span>
-            </motion.div>
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
-              className="text-6xl md:text-6xl font-black text-white uppercase tracking-tighter"
-            >
-              <div className="">
-                <FlipWords
-                  words={["Frontend", "Design"]}
-                  className="text-white"
-                />
-              </div>
-            </motion.h2>
-          </div>
+            <div className="space-y-4">
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                className="flex items-center gap-2 mt-10"
+              >
+                <span className="text-[#4cd964] font-medium">
+                  Driver D: \portolio \Projects &gt;
+                </span>
+              </motion.div>
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.1 }}
+                className="text-6xl md:text-6xl font-black text-white uppercase tracking-tighter"
+              >
+                <div className="">
+                  <FlipWords
+                    words={["Frontend", "Design"]}
+                    className="text-white"
+                  />
+                </div>
+              </motion.h2>
+            </div>
 
-          <div className="hidden md:flex flex-col items-end gap-2">
+            <div className="hidden md:flex flex-col items-end gap-2">
             {/* <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
               Projects
             </span> */}
-            <div className="flex gap-1">
-              {projects.map((_, i) => (
-                <motion.div
-                  key={i}
-                  className="h-1 w-8 bg-zinc-800 rounded-full overflow-hidden"
-                >
+              <div className="flex gap-1">
+                {projects.map((_, i) => (
                   <motion.div
-                    className="h-full bg-[var(--brand-green)]"
-                    style={{
-                      scaleX: useTransform(
-                        scrollYProgress,
+                    key={i}
+                    className="h-1 w-8 bg-zinc-800 rounded-full overflow-hidden"
+                  >
+                    <motion.div
+                      className="h-full bg-[var(--brand-green)]"
+                      style={{
+                        scaleX: useTransform(
+                          scrollYProgress,
                         [i / projects.length, (i + 1) / projects.length],
-                        [0, 1],
-                      ),
-                      transformOrigin: "left",
-                    }}
-                  />
-                </motion.div>
-              ))}
+                          [0, 1],
+                        ),
+                        transformOrigin: "left",
+                      }}
+                    />
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Horizontal Card Container */}
-        <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24">
-          {projects.map((project, index) => (
-            <ProjectCard key={index} project={project} index={index} />
-          ))}
-        </motion.div>
+          {/* Horizontal Card Container */}
+          <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24">
+            {projects.map((project, index) => (
+              <ProjectCard key={index} project={project} index={index} />
+            ))}
+          </motion.div>
 
         {/* Progress Background Text (Decorative) */}
         <div className="absolute bottom-0 left-0 w-full h-[30vh] pointer-events-none opacity-[0.03] overflow-hidden select-none">
@@ -179,11 +179,11 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
         <span
           key={i}
           className={`absolute ${pos} w-2 h-2 border-white/20 z-20 pointer-events-none group-hover:border-[var(--brand-green)]/60 transition-colors duration-500
-            ${i === 0 ? "border-t border-l" : ""}
-            ${i === 1 ? "border-t border-r" : ""}
-            ${i === 2 ? "border-b border-l" : ""}
-            ${i === 3 ? "border-b border-r" : ""}
-          `}
+              ${i === 0 ? "border-t border-l" : ""}
+              ${i === 1 ? "border-t border-r" : ""}
+              ${i === 2 ? "border-b border-l" : ""}
+              ${i === 3 ? "border-b border-r" : ""}
+            `}
         />
       ))}
 
