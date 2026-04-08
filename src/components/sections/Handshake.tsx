@@ -12,7 +12,10 @@ const socials = [
 
 export default function Handshake() {
   return (
-    <section className="min-h-screen flex flex-col items-center justify-center bg-black relative px-6 py-40 overflow-hidden">
+    <section
+      id="contact"
+      className="min-h-screen flex flex-col items-center justify-center bg-black relative px-6 py-40 overflow-hidden"
+    >
       {/* Background Decorative Text */}
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center opacity-[0.02] pointer-events-none select-none">
         <span className="text-[25vw] font-black uppercase tracking-tighter whitespace-nowrap">

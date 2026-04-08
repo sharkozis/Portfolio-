@@ -2,8 +2,8 @@
 
 import { Home, User, Cpu, FolderKanban, Mail } from "lucide-react";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
-import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
+import { useState, useEffect } from "react";
 
 const navItems = [
   {
@@ -34,8 +34,34 @@ const navItems = [
 ];
 
 export function Navbar() {
-  // For now, we use simple hash links as requested.
-  const activeHref = "#home";
+  const [activeId, setActiveId] = useState("home");
+
+  useEffect(() => {
+    if (typeof window === "undefined" || !("IntersectionObserver" in window))
+      return;
+
+    const navIds = navItems.map((item) => item.href.substring(1));
+    const elements = navIds
+      .map((id) => document.getElementById(id))
+      .filter(Boolean) as HTMLElement[];
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setActiveId(entry.target.id);
+          }
+        });
+      },
+      {
+        rootMargin: "-40% 0px -40% 0px",
+      },
+    );
+
+    elements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 -translate-x-1/2 w-full max-w-[90vw] md:max-w-3xl overflow-visible">
@@ -56,7 +82,7 @@ export function Navbar() {
               <DockIcon
                 className={cn(
                   "transition-colors duration-200",
-                  item.href === activeHref
+                  item.href === `#${activeId}`
                     ? "text-[#2da547]"
                     : "text-neutral-400 hover:text-[#2da547]",
                 )}

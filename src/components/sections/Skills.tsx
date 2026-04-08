@@ -86,6 +86,7 @@ export default function Skills() {
 
   return (
     <section
+      id="skills"
       className="relative w-full min-h-screen overflow-hidden bg-[#050505] font-sans select-none"
       onPointerDown={(e) =>
         ((e.currentTarget as HTMLElement).style.cursor = "grabbing")
@@ -120,7 +121,6 @@ export default function Skills() {
         </div>
         {/* Header and Toggle Button Group */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 relative z-50">
-
           <div className="flex bg-white/10 py-2 px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
             {activeMode === "frontend" ? (
               <motion.div className="relative cursor-default">

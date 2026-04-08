@@ -9,6 +9,7 @@ import { FlickeringGrid } from "@/registry/magicui/flickering-grid";
 export default function Hero() {
   return (
     <section
+      id="home"
       className="min-h-screen flex flex-col relative overflow-hidden"
       style={{ background: "var(--bg-base)" }}
     >

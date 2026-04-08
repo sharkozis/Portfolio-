@@ -59,6 +59,7 @@ export default function AboutSection() {
 
   return (
     <section
+      id="about"
       ref={sectionRef}
       className="relative min-h-screen flex items-center justify-center overflow-hidden"
       style={{ background: "var(--bg-base)" }}
