@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import Image from "next/image";
+import { LivePreviewButton } from "../ui/LivePreviewButton";
 
 const projects = [
   {
@@ -157,9 +158,9 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           src={project.image}
           alt={project.title}
           fill
-          className="object-cover opacity-40 group-hover:opacity-60 group-hover:scale-105 group-hover:blur-sm transition-all duration-700 ease-out"
+          className="object-cover opacity-80 group-hover:opacity-40 group-hover:scale-105 group-hover:blur-sm transition-all duration-700 ease-out"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent z-10" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/90 group-hover:via-black/40 transition-all duration-500 z-10" />
       </div>
 
       {/* Card Content Decoration (SelectionFrame-style Corners) */}
@@ -181,25 +182,19 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       ))}
 
       {/* Project Info */}
-      <div className="absolute inset-0 z-20 p-8 md:p-12 flex flex-col justify-between">
-        <div className="flex justify-between items-start">
-          <span className="px-4 py-1.5 rounded-full border border-[var(--brand-green)]/30 bg-[var(--brand-green)]/10 text-[var(--brand-green)] group-hover:text-white transition-colors duration-500 font-mono text-[10px] uppercase tracking-widest backdrop-blur-md">
-            {project.tag}
-          </span>
-        </div>
-
-        <div className="space-y-6 max-w-xl opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
-          <div className="space-y-2">
-            <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter group-hover:text-[var(--brand-green)] transition-colors duration-500">
+      <div className="absolute inset-0 z-20 p-8 md:px-12 flex flex-col justify-center">
+        <div className=" max-w-xl opacity-0 group-hover:opacity-100 translate-y-4 group-hover:translate-y-0 transition-all duration-500 ease-out">
+          <div className="space-y-1">
+            <h1 className="text-3xl md:text-9xl font-black text-white uppercase tracking-tighter transition-colors duration-500">
               {project.title}
-            </h3>
-            <p className="text-zinc-400 text-lg md:text-xl font-light leading-relaxed">
+            </h1>
+            <p className="text-zinc-400 text-xs md:text-lg font-light leading-tight max-w-lg my-8">
               {project.description}
             </p>
           </div>
 
-          <div className="flex items-center gap-8 pt-4">
-            <div className="flex flex-col gap-4">
+          <div className="flex items-center gap-10">
+            <div className="flex flex-col gap-3">
               <div className="flex flex-col">
                 <span className="text-zinc-500 text-[10px] uppercase tracking-[0.2em] mb-1">
                   Role
@@ -212,7 +207,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
                 {project.stack.map((item: string, i: number) => (
                   <span
                     key={i}
-                    className="text-white/40 font-mono text-[9px] uppercase tracking-tighter"
+                    className="text-[var(--brand-green)] font-mono text-[9px] uppercase tracking-tighter"
                   >
                     {item}
                   </span>
@@ -221,40 +216,9 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
             </div>
 
             {project.livePreview ? (
-              <a
-                href={project.livePreview}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group/btn flex items-center gap-3 px-6 py-3 bg-[var(--brand-green)] text-black rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 active:scale-95"
-              >
-                Live Preview
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
-              </a>
+              <LivePreviewButton href={project.livePreview} />
             ) : (
-              <button className="group/btn flex items-center gap-3 px-6 py-3 bg-[var(--brand-green)] text-black rounded-full font-bold text-sm hover:scale-105 transition-all duration-300 active:scale-95">
-                Case Study
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="3"
-                  className="group-hover/btn:translate-x-1 group-hover/btn:-translate-y-1 transition-transform"
-                >
-                  <path d="M7 17L17 7M17 7H7M17 7V17" />
-                </svg>
-              </button>
+              <LivePreviewButton label="Case Study" />
             )}
           </div>
         </div>
