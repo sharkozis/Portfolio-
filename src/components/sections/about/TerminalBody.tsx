@@ -8,7 +8,7 @@ export default function TerminalBody() {
       {/* ── Prompt ── */}
       <div className="flex items-center gap-2 text-sm md:text-base mb-12">
         <span className="text-[#4cd964] font-medium">
-          Desktop C: \portolio \About me &gt;
+          Driver C: \portolio \About me &gt;
         </span>
       </div>
 

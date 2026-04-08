@@ -112,11 +112,14 @@ export default function Skills() {
       />
 
       <div className="relative z-40 container mx-auto px-12 md:px-24 pt-16 md:pt-30 flex flex-col max-w-7xl">
+        {/* ── Terminal Prompt ── */}
+        <div className="flex items-center gap-2 text-sm md:text-base mb-8">
+          <span className="text-[#4cd964] font-medium">
+            Driver E: \portolio \Skills &gt;
+          </span>
+        </div>
         {/* Header and Toggle Button Group */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 relative z-50">
-          <h2 className="text-[var(--brand-green)] text-5xl md:text-6xl font-extrabold uppercase tracking-tight">
-            Skills
-          </h2>
 
           <div className="flex bg-white/10 py-2 px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
             {activeMode === "frontend" ? (

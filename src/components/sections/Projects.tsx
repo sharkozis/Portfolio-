@@ -83,9 +83,8 @@ export default function Projects() {
               transition={{ duration: 0.6 }}
               className="flex items-center gap-2 mt-80"
             >
-              <div className="h-[1px] w-8 bg-[var(--brand-green)]" />
-              <span className="text-[var(--brand-green)] font-mono text-xs tracking-[0.4em] uppercase font-bold">
-                The Projects
+              <span className="text-[#4cd964] font-medium">
+                Driver D: \portolio \Projects &gt;
               </span>
             </motion.div>
             <motion.h2
