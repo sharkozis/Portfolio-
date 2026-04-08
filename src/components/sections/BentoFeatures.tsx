@@ -8,10 +8,10 @@ const gridItems = [
     id: 1,
     spanClass: "md:col-span-1 lg:col-span-1 md:row-span-2 lg:row-span-2",
     hasImage: true,
-    title: "Mobile App Redesign",
+    title: "Mobile App",
     description:
-      "Complete UI/UX overhaul focusing on gesture-based navigation and refined typography.",
-    tools: ["Framer", "React Native", "Tailwind"],
+      "This is a mobile app for a company called Empty Marketplace App. This app is used rent cars and for drivers to get their payment via this app.",
+    tools: ["Kotlin", "KMP", "Jetpack Compose"],
   },
   {
     id: 3,
@@ -90,8 +90,10 @@ export default function BentoFeatures() {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.05 }}
               key={item.id}
-              className={`group relative bg-[#0a0a0a] overflow-hidden rounded-3xl ${item.spanClass} ${
-                item.hasImage ? "border border-[var(--brand-green)]/40" : ""
+              className={`group relative bg-[#0a0a0a] overflow-hidden rounded-3xl transition-colors duration-500 border ${item.spanClass} ${
+                item.hasImage
+                  ? "border-[var(--brand-green)]/40 group-hover:border-[var(--brand-green)]"
+                  : "border-white/10 group-hover:border-[var(--brand-green)]"
               }`}
             >
               {/* Image Holder */}
