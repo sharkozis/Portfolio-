@@ -3,6 +3,7 @@ import AboutSection from "@/components/sections/about/AboutSection";
 import Skills from "@/components/sections/Skills";
 import Projects from "@/components/sections/Projects";
 import BentoFeatures from "@/components/sections/BentoFeatures";
+import Unknown from "@/components/sections/Unknown";
 import Handshake from "@/components/sections/Handshake";
 import { Navbar } from "@/components/sections/Navbar";
 
@@ -19,6 +20,7 @@ export default function Home() {
       <Skills />
       <Projects />
       <BentoFeatures />
+      <Unknown />
       <Handshake />
       <Navbar />
     </main>
