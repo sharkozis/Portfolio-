@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { useState } from "react";
 import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import { X } from "lucide-react";
+import Image from "next/image";
 
 export default function Unknown() {
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,13 +37,12 @@ export default function Unknown() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex flex-col items-center text-center space-y-6"
           >
-            <h2 className="text-4xl md:text-6xl font-black text-white uppercase tracking-tighter">
+            <h2 className="text-4xl md:text-6xl font-black text-white uppercase mb-0">
               Explore the{" "}
               <span className="text-[var(--brand-green)]">Unknown</span>
             </h2>
             <p className="text-zinc-500 max-w-lg text-lg">
-              Click below to reveal hidden research and experimental design
-              modules.
+              Click below to reveal experimental skills
             </p>
           </motion.div>
 
@@ -104,32 +104,29 @@ export default function Unknown() {
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
                       <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
-                        Shadow <br /> Research
+                        Motion <br /> Designer
                       </h3>
                       <p className="text-neutral-400 text-xl leading-relaxed font-light">
-                        Discover the hidden layers of digital architecture. We
-                        push the boundaries of human-computer interaction
-                        through experimental prototypes and high-fidelity UI
-                        systems.
+                        I love to create motion graphics and animations. Here
+                        are some of my experimental works.
                       </p>
                       <div className="flex gap-4">
                         <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                          R&D Section 07
-                        </div>
-                        <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                          Status: Active
+                          After Effects
                         </div>
                       </div>
                     </div>
 
-                    <div className="relative aspect-square rounded-3xl bg-neutral-900 border border-white/5 overflow-hidden group">
-                      <div className="absolute inset-0 bg-gradient-to-br from-[var(--brand-green)]/10 to-transparent" />
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="w-2/3 h-2/3 border border-[var(--brand-green)]/20 rounded-full animate-[spin_20s_linear_infinite]" />
-                        <div className="absolute w-1/2 h-1/2 border border-[var(--brand-green)]/40 rounded-full animate-[spin_10s_linear_reverse_infinite]" />
-                        <span className="text-white/50 font-mono text-sm tracking-[0.5em] uppercase">
-                          Processing
-                        </span>
+                    <div className="relative w-[60%] mx-auto aspect-[3/4] rounded-[2rem] bg-neutral-900/50 backdrop-blur-md border border-white/10 overflow-hidden flex items-center justify-center p-3">
+                      <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
+
+                      <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                        <Image
+                          src="/ae.jpg"
+                          alt="After Effects"
+                          fill
+                          className="object-cover"
+                        />
                       </div>
                     </div>
                   </div>
