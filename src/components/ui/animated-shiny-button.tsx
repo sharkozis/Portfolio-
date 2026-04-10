@@ -9,6 +9,7 @@ interface AnimatedShinyButtonProps {
   url?: string;
   active?: boolean;
   showIcon?: boolean;
+  onClick?: () => void;
 }
 
 export function AnimatedShinyButton({
@@ -17,6 +18,7 @@ export function AnimatedShinyButton({
   url,
   active = true,
   showIcon = true,
+  onClick,
 }: AnimatedShinyButtonProps) {
   return (
     <>
@@ -255,7 +257,7 @@ export function AnimatedShinyButton({
           </span>
         </a>
       ) : (
-        <button className={`shiny-cta group ${className}`}>
+        <button className={`shiny-cta group ${className}`} onClick={onClick}>
           <span className="flex items-center">
             {children}
             {showIcon && (
