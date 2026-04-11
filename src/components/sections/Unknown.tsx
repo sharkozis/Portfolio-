@@ -6,41 +6,26 @@ import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import { X } from "lucide-react";
 import Image from "next/image";
 
-const experimentalWorks = [
-  {
-    id: 1,
-    title: "Cinematic Environment",
-    type: "landscape",
-    src: "/video/land-1.mp4",
-  },
-  {
-    id: 2,
-    title: "Abstract Motion",
-    type: "landscape",
-    src: "/video/land-2.mp4",
-  },
-  {
-    id: 3,
-    title: "Particle Flow",
-    type: "square",
-    src: "/video/s1.mp4",
-  },
-  {
-    id: 4,
-    title: "Organic Flux",
-    type: "square",
-    src: "/video/s2.mp4",
-  },
-  {
-    id: 5,
-    title: "Geometric Pulse",
-    type: "square",
-    src: "/video/s3.mp4",
-  },
-];
+import { getVideos } from "@/app/actions";
 
 export default function Unknown() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [experimentalWorks, setExperimentalWorks] = useState<any[]>([]);
+
+  // Load videos dynamically from the public/video folder
+  useEffect(() => {
+    async function fetchVideos() {
+      const files = await getVideos();
+      const mapped = files.map((file) => ({
+        id: file,
+        title: file.replace(".mp4", "").replace("-", " ").toUpperCase(),
+        type: file.startsWith("land") ? "landscape" : "square",
+        src: `/video/${file}`,
+      }));
+      setExperimentalWorks(mapped);
+    }
+    fetchVideos();
+  }, []);
 
   // Scroll lock implementation with layout shift prevention
   useEffect(() => {
@@ -206,12 +191,6 @@ export default function Unknown() {
                               playsInline
                               className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
-                            <div className="absolute inset-x-0 bottom-0 p-8">
-                              <h4 className="text-white font-bold uppercase tracking-widest text-sm translate-y-2 group-hover:translate-y-0 transition-transform">
-                                {item.title}
-                              </h4>
-                            </div>
                           </div>
                         ))}
                     </div>
@@ -233,12 +212,6 @@ export default function Unknown() {
                               playsInline
                               className="w-full h-full object-cover"
                             />
-                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
-                            <div className="absolute inset-x-0 bottom-0 p-8">
-                              <h4 className="text-white font-bold uppercase tracking-widest text-sm translate-y-2 group-hover:translate-y-0 transition-transform">
-                                {item.title}
-                              </h4>
-                            </div>
                           </div>
                         ))}
                     </div>
