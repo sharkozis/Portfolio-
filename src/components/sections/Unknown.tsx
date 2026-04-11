@@ -1,13 +1,58 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
 import { X } from "lucide-react";
 import Image from "next/image";
 
+const experimentalWorks = [
+  {
+    id: 1,
+    title: "Cinematic Environment",
+    type: "landscape",
+    src: "/video/land-1.mp4",
+  },
+  {
+    id: 2,
+    title: "Abstract Motion",
+    type: "landscape",
+    src: "/video/land-2.mp4",
+  },
+  {
+    id: 3,
+    title: "Particle Flow",
+    type: "square",
+    src: "/video/s1.mp4",
+  },
+  {
+    id: 4,
+    title: "Organic Flux",
+    type: "square",
+    src: "/video/s2.mp4",
+  },
+  {
+    id: 5,
+    title: "Geometric Pulse",
+    type: "square",
+    src: "/video/s3.mp4",
+  },
+];
+
 export default function Unknown() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Scroll lock implementation
+  useEffect(() => {
+    if (isModalOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [isModalOpen]);
 
   return (
     <section
@@ -100,7 +145,7 @@ export default function Unknown() {
 
               {/* Content */}
               <div className="flex-1 overflow-y-auto custom-scrollbar">
-                <div className="max-w-6xl mx-auto p-8 md:p-16 space-y-12">
+                <div className="max-w-6xl mx-auto p-8 md:p-16 space-y-16">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
                       <h3 className="text-5xl md:text-7xl font-black text-white uppercase tracking-tighter leading-[0.9]">
@@ -110,17 +155,12 @@ export default function Unknown() {
                         I love to create motion graphics and animations. Here
                         are some of my experimental works.
                       </p>
-                      <div className="flex gap-4">
-                        <div className="px-4 py-2 rounded-lg bg-white/5 border border-white/10 text-xs font-mono text-zinc-500 uppercase tracking-widest">
-                          After Effects
-                        </div>
-                      </div>
                     </div>
 
-                    <div className="relative w-[60%] mx-auto aspect-[3/4] rounded-[2rem] bg-neutral-900/50 backdrop-blur-md border border-white/10 overflow-hidden flex items-center justify-center p-3">
+                    <div className="relative w-[60%] mx-auto aspect-[3.35/4] rounded-[2rem] bg-neutral-900/50 backdrop-blur-md border border-white/10 overflow-hidden p-4">
                       <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
 
-                      <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl">
+                      <div className="relative w-full aspect-square rounded-2xl overflow-hidden shadow-2xl border border-white/5">
                         <Image
                           src="/ae.jpg"
                           alt="After Effects"
@@ -133,24 +173,60 @@ export default function Unknown() {
 
                   <div className="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12">
-                    {[1, 2, 3].map((i) => (
-                      <div
-                        key={i}
-                        className="p-8 rounded-2xl bg-white/[0.02] border border-white/5 space-y-4 hover:bg-white/[0.04] transition-colors"
-                      >
-                        <div className="w-10 h-10 rounded-xl bg-[var(--brand-green)]/10 flex items-center justify-center text-[var(--brand-green)]">
-                          {i}
-                        </div>
-                        <h4 className="text-white font-bold uppercase tracking-tight">
-                          Phase {i}: Analysis
-                        </h4>
-                        <p className="text-neutral-500 text-sm">
-                          Synthetic data mapping and visual core optimization
-                          for next-gen platforms.
-                        </p>
-                      </div>
-                    ))}
+                  <div className="space-y-12">
+                    {/* Landscape Videos Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                      {experimentalWorks
+                        .filter((w) => w.type === "landscape")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="group relative aspect-video rounded-3xl bg-neutral-900 border border-white/5 overflow-hidden hover:border-[var(--brand-green)]/30 transition-colors"
+                          >
+                            <video
+                              src={item.src}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute inset-x-0 bottom-0 p-8">
+                              <h4 className="text-white font-bold uppercase tracking-widest text-sm translate-y-2 group-hover:translate-y-0 transition-transform">
+                                {item.title}
+                              </h4>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
+
+                    {/* Square Videos Section */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pb-12">
+                      {experimentalWorks
+                        .filter((w) => w.type === "square")
+                        .map((item) => (
+                          <div
+                            key={item.id}
+                            className="group relative aspect-square rounded-3xl bg-neutral-900 border border-white/5 overflow-hidden hover:border-[var(--brand-green)]/30 transition-colors"
+                          >
+                            <video
+                              src={item.src}
+                              autoPlay
+                              loop
+                              muted
+                              playsInline
+                              className="w-full h-full object-cover"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-100 transition-opacity" />
+                            <div className="absolute inset-x-0 bottom-0 p-8">
+                              <h4 className="text-white font-bold uppercase tracking-widest text-sm translate-y-2 group-hover:translate-y-0 transition-transform">
+                                {item.title}
+                              </h4>
+                            </div>
+                          </div>
+                        ))}
+                    </div>
                   </div>
                 </div>
               </div>
