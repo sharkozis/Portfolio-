@@ -54,25 +54,25 @@ export default function Unknown() {
   return (
     <section
       id="unknown"
-      className="relative min-h-[500px] w-full bg-black overflow-hidden py-24 selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative min-h-[60vh] flex items-center w-full bg-black overflow-hidden py-24 selection:bg-[var(--brand-green)] selection:text-black"
     >
-      <div className="container mx-auto px-12 md:px-24 flex flex-col justify-center h-full max-w-7xl relative z-10">
+      <div className="container mx-auto px-12 md:px-24 flex flex-col items-center justify-center h-full max-w-7xl relative z-10">
         {/* Section Header (Terminal Style) */}
-        <div className="space-y-4 mb-12">
+        <div className="space-y-4 mb-16">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="flex items-center gap-2 mt-10"
+            className="flex items-center gap-2"
           >
             <span className="text-[#4cd964] font-medium">
-              Driver D: \portolio \Unknown &gt;
+              Driver 404: \portolio \Unknown &gt;
             </span>
           </motion.div>
         </div>
 
         {/* Content Area */}
-        <div className="flex flex-col items-center justify-center space-y-12 mb-20">
+        <div className="flex flex-col items-center justify-center space-y-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -218,7 +218,10 @@ export default function Unknown() {
 
                     <div className="pt-12 pb-24 text-center">
                       <p className="text-xl md:text-4xl font-light text-white/50 leading-relaxed">
-                        <span className="text-shimmer"> Well, i love to explore skills</span>
+                        <span className="text-shimmer">
+                          {" "}
+                          Well, i love to explore skills
+                        </span>
                       </p>
                     </div>
                   </div>
