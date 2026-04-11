@@ -42,15 +42,27 @@ const experimentalWorks = [
 export default function Unknown() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Scroll lock implementation
+  // Scroll lock implementation with layout shift prevention
   useEffect(() => {
+    const lenis = (window as any).lenis;
     if (isModalOpen) {
+      if (lenis) lenis.stop();
+      const scrollBarWidth =
+        window.innerWidth - document.documentElement.clientWidth;
       document.body.style.overflow = "hidden";
+      document.documentElement.style.overflow = "hidden";
+      document.body.style.paddingRight = `${scrollBarWidth}px`;
     } else {
-      document.body.style.overflow = "unset";
+      if (lenis) lenis.start();
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.paddingRight = "0px";
     }
     return () => {
-      document.body.style.overflow = "unset";
+      if (lenis) lenis.start();
+      document.body.style.overflow = "";
+      document.documentElement.style.overflow = "";
+      document.body.style.paddingRight = "0px";
     };
   }, [isModalOpen]);
 
@@ -144,7 +156,10 @@ export default function Unknown() {
               </div>
 
               {/* Content */}
-              <div className="flex-1 overflow-y-auto custom-scrollbar">
+              <div
+                className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain min-h-0"
+                data-lenis-prevent
+              >
                 <div className="max-w-6xl mx-auto p-8 md:p-16 space-y-16">
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
                     <div className="space-y-6">
