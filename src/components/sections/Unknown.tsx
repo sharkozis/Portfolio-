@@ -142,7 +142,7 @@ export default function Unknown() {
 
               {/* Content */}
               <div
-                className="flex-1 overflow-y-auto custom-scrollbar overscroll-contain min-h-0"
+                className="flex-1 overflow-y-auto modal-scrollbar overscroll-contain min-h-0"
                 data-lenis-prevent
               >
                 <div className="max-w-6xl mx-auto p-8 md:p-16 space-y-16">
@@ -214,6 +214,12 @@ export default function Unknown() {
                             />
                           </div>
                         ))}
+                    </div>
+
+                    <div className="pt-12 pb-24 text-center">
+                      <p className="text-xl md:text-4xl font-light text-white/50 leading-relaxed">
+                        <span className="text-shimmer"> Well, i love to explore skills</span>
+                      </p>
                     </div>
                   </div>
                 </div>
