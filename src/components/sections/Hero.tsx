@@ -76,7 +76,20 @@ export default function Hero() {
             transition={{ duration: 0.6 }}
             className="shrink-0 md:pt-4"
           >
-            <AnimatedShinyButton className="px-8 shadow-2xl">
+            <AnimatedShinyButton
+              className="px-8 shadow-2xl"
+              onClick={() => {
+                const element = document.getElementById("contact");
+                if (element) {
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo(element, { offset: 0, duration: 2 });
+                  } else {
+                    element.scrollIntoView({ behavior: "smooth" });
+                  }
+                }
+              }}
+            >
               Connect
             </AnimatedShinyButton>
           </motion.div>

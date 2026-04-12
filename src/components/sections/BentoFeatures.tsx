@@ -108,7 +108,7 @@ const gridItems = [
 
 export default function BentoFeatures() {
   return (
-    <section className="relative bg-black py-24 min-h-screen flex items-center justify-center w-full z-20">
+    <section className="relative bg-black pb-8 pt-0 w-full z-20">
       <div className="container mx-auto px-4 md:px-2 lg:px-2 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[300px] gap-6 w-full">
           {gridItems.map((item, index) => (
@@ -125,7 +125,7 @@ export default function BentoFeatures() {
             >
               {/* Image Holder */}
               <div
-                className={`absolute inset-0 z-0 ${item.hasImage ? item.paddingClass || "px-4 py-3" : ""}`}
+                className={`absolute inset-0 z-0 ${item.hasImage ? item.paddingClass || "px-4 pb-3 pt-0" : ""}`}
               >
                 <div className="relative w-full h-full">
                   <Image

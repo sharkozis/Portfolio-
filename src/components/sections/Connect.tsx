@@ -19,16 +19,23 @@ const CONNECT_CARDS = [
   {
     name: "Discord",
     image: "/coonnect3.png",
-    href: "https://discord.gg/J5842828",
+    username: "sharko_bud",
   },
 ];
 
 const CHIPS = ["Available", "Remote", "Collaborative", "Design Eng"];
 
-function HandshakeSlider() {
+function ConnectSlider() {
   const [isStarted, setIsStarted] = useState(false);
   const [isFinished, setIsFinished] = useState(false);
   const [progress, setProgress] = useState(0);
+  const [isCopied, setIsCopied] = useState(false);
+
+  const handleDiscordClick = (username: string) => {
+    navigator.clipboard.writeText(username);
+    setIsCopied(true);
+    setTimeout(() => setIsCopied(false), 2000);
+  };
 
   const startLoading = () => {
     if (isStarted) return;
@@ -106,30 +113,43 @@ function HandshakeSlider() {
       <div className="flex flex-wrap justify-center gap-4 min-h-[60px] pt-8">
         {isFinished && (
           <div className="flex flex-wrap justify-center gap-4">
-            {CONNECT_CARDS.map((card, i) => (
-              <motion.a
-                key={i}
-                href={card.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.8, y: 30 }}
-                animate={{ opacity: 1, scale: 1, y: 0 }}
-                whileHover={{ scale: 1.05, y: -4 }}
-                transition={{
-                  delay: i * 0.1,
-                  type: "spring",
-                  stiffness: 260,
-                  damping: 18,
-                }}
-                className="flex items-center gap-2 px-4  bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl group transition-all hover:border-[var(--brand-green)]/40 hover:bg-zinc-800"
-              >
-                <span className="text-[11px] font-medium text-zinc-400 group-hover:text-white transition-colors">
-                  {card.name}
-                </span>
+            {CONNECT_CARDS.map((card, i) => {
+              const isDiscord = card.name === "Discord";
 
-                <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-[var(--brand-green)] transition-colors" />
-              </motion.a>
-            ))}
+              return (
+                <motion.a
+                  key={i}
+                  href={isDiscord ? undefined : (card as any).href}
+                  onClick={
+                    isDiscord
+                      ? () => handleDiscordClick(card.username!)
+                      : undefined
+                  }
+                  target={isDiscord ? undefined : "_blank"}
+                  rel={isDiscord ? undefined : "noopener noreferrer"}
+                  initial={{ opacity: 0, scale: 0.8, y: 30 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  whileHover={{ scale: 1.05, y: -4 }}
+                  transition={{
+                    delay: i * 0.1,
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 18,
+                  }}
+                  className={`flex items-center gap-2 px-4 py-2 bg-zinc-900 border ${isDiscord && isCopied ? "border-[var(--brand-green)]" : "border-white/10"} rounded-2xl shadow-2xl group transition-all hover:border-[var(--brand-green)]/40 hover:bg-zinc-800 cursor-pointer`}
+                >
+                  <span
+                    className={`text-[11px] font-medium ${isDiscord && isCopied ? "text-[var(--brand-green)]" : "text-zinc-400"} group-hover:text-white transition-colors`}
+                  >
+                    {isDiscord && isCopied ? "Copied!" : card.name}
+                  </span>
+
+                  <ChevronRight
+                    className={`w-4 h-4 ${isDiscord && isCopied ? "text-[var(--brand-green)]" : "text-zinc-600"} group-hover:text-[var(--brand-green)] transition-colors`}
+                  />
+                </motion.a>
+              );
+            })}
           </div>
         )}
       </div>
@@ -160,7 +180,7 @@ const itemVariants: Variants = {
   },
 };
 
-export default function Handshake() {
+export default function Connect() {
   return (
     <section
       id="contact"
@@ -200,7 +220,7 @@ export default function Handshake() {
           variants={itemVariants}
           className="flex flex-col items-center"
         >
-          <HandshakeSlider />
+          <ConnectSlider />
         </motion.div>
       </motion.div>
 

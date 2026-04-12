@@ -16,7 +16,7 @@ interface ThanksgivingProps {
 
 export default function ThanksgivingClient({ cards }: ThanksgivingProps) {
   return (
-    <section className="relative w-screen bg-black py-24 md:py-32 overflow-hidden selection:bg-[var(--brand-green)] selection:text-black">
+    <section className="relative w-full bg-black py-24 md:py-32 overflow-hidden selection:bg-[var(--brand-green)] selection:text-black">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left Content */}

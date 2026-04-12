@@ -40,17 +40,17 @@ export default function Projects() {
     <section
       id="projects"
       ref={targetRef}
-      className="relative h-[300vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative h-[200vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-24">
+      <div className="sticky top-0 h-screen flex flex-col justify-end overflow-hidden pb-12 pt-24">
         {/* Section Header */}
-        <div className="container mx-auto px-12 md:px-24 mb-24 flex justify-between items-end max-w-7xl">
+        <div className="container mx-auto px-12 md:px-24 mb-6 flex justify-between items-end max-w-7xl">
           <div className="space-y-4">
             <motion.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.6 }}
-              className="flex items-center gap-2 mt-10"
+              className="flex items-center gap-2 mt-2"
             >
               <span className="text-[#4cd964] font-medium">
                 Driver D: \portolio \Projects &gt;
@@ -99,7 +99,7 @@ export default function Projects() {
         </div>
 
         {/* Horizontal Card Container */}
-        <motion.div style={{ x }} className="flex gap-12 px-12 md:px-24">
+        <motion.div style={{ x }} className="flex gap-4 px-12 md:px-24">
           {projects.map((project, index) => (
             <ProjectCard key={index} project={project} index={index} />
           ))}
