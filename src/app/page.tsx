@@ -11,7 +11,7 @@ import { Navbar } from "@/components/sections/Navbar";
 export default function Home() {
   return (
     <main
-      className="relative text-white selection:bg-[var(--selection-bg)] selection:text-white overflow-x-hidden"
+      className="relative text-white selection:bg-[var(--selection-bg)] selection:text-white"
       style={{
         background: "var(--bg-base)",
       }}

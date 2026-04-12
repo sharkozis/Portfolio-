@@ -108,7 +108,7 @@ const gridItems = [
 
 export default function BentoFeatures() {
   return (
-    <section className="relative bg-black pb-8 pt-0 w-full z-20">
+    <section className="relative bg-black pb-32 pt-0 w-full z-20">
       <div className="container mx-auto px-4 md:px-2 lg:px-2 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 auto-rows-[300px] gap-6 w-full">
           {gridItems.map((item, index) => (

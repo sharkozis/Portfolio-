@@ -54,7 +54,7 @@ export default function Unknown() {
   return (
     <section
       id="unknown"
-      className="relative w-full bg-black overflow-hidden pt-0 pb-24 selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative w-full bg-black overflow-hidden pt-32 pb-24 selection:bg-[var(--brand-green)] selection:text-black"
     >
       <div className="container mx-auto px-12 md:px-24 flex flex-col items-center justify-center h-full max-w-7xl relative z-10">
         {/* Section Header (Terminal Style) */}

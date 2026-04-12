@@ -34,15 +34,15 @@ export default function Projects() {
     offset: ["start start", "end end"],
   });
 
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  const x = useTransform(scrollYProgress, [0.2, 0.8], ["0%", "-50%"]);
 
   return (
     <section
       id="projects"
       ref={targetRef}
-      className="relative h-[200vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
-      <div className="sticky top-0 h-screen flex flex-col justify-end overflow-hidden pb-12 pt-24">
+      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-0">
         {/* Section Header */}
         <div className="container mx-auto px-12 md:px-24 mb-6 flex justify-between items-end max-w-7xl">
           <div className="space-y-4">
@@ -86,7 +86,10 @@ export default function Projects() {
                     style={{
                       scaleX: useTransform(
                         scrollYProgress,
-                        [i / projects.length, (i + 1) / projects.length],
+                        [
+                          0.2 + (i / projects.length) * 0.6,
+                          0.2 + ((i + 1) / projects.length) * 0.6,
+                        ],
                         [0, 1],
                       ),
                       transformOrigin: "left",
@@ -108,7 +111,9 @@ export default function Projects() {
         {/* Progress Background Text (Decorative) */}
         <div className="absolute bottom-0 left-0 w-full h-[30vh] pointer-events-none opacity-[0.03] overflow-hidden select-none">
           <motion.div
-            style={{ x: useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]) }}
+            style={{
+              x: useTransform(scrollYProgress, [0.2, 0.8], ["0%", "-50%"]),
+            }}
             className="text-[20rem] font-black text-white whitespace-nowrap leading-none uppercase"
           >
             Digital Experiences Crafting Future Interactivity
