@@ -3,46 +3,18 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 
-const CARDS = [
-  {
-    image: "/c1.png",
-    title: "Antigravity",
-    subtitle: "AI Coding Assistant",
-    tag: "AI",
-  },
-  {
-    image: "/c2.png",
-    title: "Claude",
-    subtitle: "Anthropic's LLM",
-    tag: "AI",
-  },
-  {
-    image: "/c3.png",
-    title: "Pinterest",
-    subtitle: "Design Inspiration",
-    tag: "Design",
-  },
-  {
-    image: "/c4.png",
-    title: "Aceternity UI",
-    subtitle: "Component Library",
-    tag: "Code",
-  },
-  {
-    image: "/c5.png",
-    title: "Shadcn UI",
-    subtitle: "Component Library",
-    tag: "Code",
-  },
-  {
-    image: "/c6.png",
-    title: "Magic UI",
-    subtitle: "Component Library",
-    tag: "Code",
-  },
-];
+export interface CardData {
+  image: string;
+  title: string;
+  subtitle: string;
+  tag: string;
+}
 
-export default function Thanksgiving() {
+interface ThanksgivingProps {
+  cards: CardData[];
+}
+
+export default function Thanksgiving({ cards }: ThanksgivingProps) {
   return (
     <section className="relative w-screen bg-black py-24 md:py-32 overflow-hidden selection:bg-[var(--brand-green)] selection:text-black">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
@@ -84,7 +56,7 @@ export default function Thanksgiving() {
                 }}
                 className="flex flex-col gap-6"
               >
-                {[...CARDS, ...CARDS].map((item, idx) => (
+                {[...cards, ...cards].map((item, idx) => (
                   <Card key={idx} {...item} />
                 ))}
               </motion.div>
@@ -96,7 +68,7 @@ export default function Thanksgiving() {
   );
 }
 
-function Card({ image, title, subtitle, tag }: (typeof CARDS)[0]) {
+function Card({ image, title, subtitle, tag }: CardData) {
   return (
     <div className="bg-[#111] border border-white/5 rounded-2xl p-4 flex items-center justify-between gap-4 w-full md:w-[400px] mx-auto transition-colors hover:border-white/10 hover:bg-[#161616]">
       <div className="flex items-center gap-4">
