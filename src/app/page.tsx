@@ -5,6 +5,7 @@ import Projects from "@/components/sections/Projects";
 import BentoFeatures from "@/components/sections/BentoFeatures";
 import Unknown from "@/components/sections/Unknown";
 import Handshake from "@/components/sections/Handshake";
+import Thanksgiving from "@/components/sections/Thanksgiving";
 import { Navbar } from "@/components/sections/Navbar";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <Projects />
       <BentoFeatures />
       <Unknown />
+      <Thanksgiving />
       <Handshake />
       <Navbar />
     </main>
