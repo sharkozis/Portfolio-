@@ -126,31 +126,26 @@ export default function Handshake() {
       id="contact"
       className="min-h-screen flex flex-col items-center justify-center bg-black relative px-6 py-40 overflow-hidden"
     >
-      {/* Background Decorative Text */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full flex justify-center opacity-[0.02] pointer-events-none select-none">
-        <span className="text-[25vw] font-black uppercase tracking-tighter whitespace-nowrap">
-          CONTACT
-        </span>
-      </div>
-
       <div className="max-w-5xl w-full text-center space-y-16 relative z-10">
-        <motion.div className="flex flex-col items-center gap-6">
-          <div className="w-16 h-[1px] bg-zinc-800" />
-          <span className="text-blue-500 font-mono text-xs tracking-[0.5em] uppercase font-bold">
-            The Handshake
+        <motion.div className="flex flex-col items-start gap-6">
+          <span className="text-[#4cd964] font-medium">
+            Driver M: \portolio \Connect &gt;
           </span>
         </motion.div>
 
         <motion.div className="space-y-4">
-          <h2 className="text-2xl md:text-3xl font-medium text-zinc-400 tracking-tight">
-            Ready to push boundaries?
+          <h2 className="text-lg md:text-xl font-medium text-zinc-400 tracking-tight">
+            Got a project to discuss?
           </h2>
           <motion.a
-            href="mailto:hello@designengineer.com"
-            whileHover={{ scale: 1.02, color: "#3b82f6" }}
-            className="block text-[14vw] sm:text-[10vw] font-black text-white leading-none tracking-tighter uppercase transition-all duration-500"
+           
+            className="block relative group"
           >
-            Let's Talk
+            <SelectionFrame>
+              <span className="text-[12vw] sm:text-[8vw] font-bold text-white leading-none tracking-tight uppercase">
+                Let's Talk
+              </span>
+            </SelectionFrame>
           </motion.a>
         </motion.div>
 
@@ -158,28 +153,36 @@ export default function Handshake() {
         <motion.div className="flex flex-col items-center">
           <HandshakeSlider />
         </motion.div>
-
-        <div className="flex flex-wrap justify-center gap-x-12 gap-y-6 pt-12">
-          {socials.map((social) => (
-            <motion.a
-              key={social.name}
-              href={social.href}
-              whileHover={{ y: -4, color: "#fff" }}
-              className="text-zinc-600 font-mono text-[10px] tracking-[0.3em] uppercase font-bold transition-colors"
-            >
-              {social.name}
-            </motion.a>
-          ))}
-        </div>
       </div>
 
-      <div className="absolute bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-800 font-mono text-[9px] uppercase tracking-widest">
-        <span>&copy; 2026 DESIGN ENGINEER — NEW YORK CITY</span>
-        <div className="flex gap-8">
-          <span>Privacy Policy</span>
-          <span>Terms of Service</span>
-        </div>
+      <div className="absolute bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-400 font-mono text-[9px] uppercase tracking-widest">
+        <span>&copy; All rights reserved 2026 Hossain — Bangladesh</span>
       </div>
     </section>
+  );
+}
+
+function SelectionFrame({ children }: { children: React.ReactNode }) {
+  return (
+    <span className="relative inline-block px-8 py-4 group cursor-pointer">
+      {/* Corner Handles */}
+      {[
+        "top-0 left-0 -translate-x-1/2 -translate-y-1/2",
+        "top-0 right-0 translate-x-1/2 -translate-y-1/2",
+        "bottom-0 left-0 -translate-x-1/2 translate-y-1/2",
+        "bottom-0 right-0 translate-x-1/2 translate-y-1/2",
+      ].map((pos, i) => (
+        <span
+          key={i}
+          className={`absolute ${pos} w-2 h-2 bg-white border border-[var(--brand-green)] z-20 pointer-events-none opacity-80 group-hover:scale-125 transition-transform`}
+        />
+      ))}
+
+      {/* Frame Border & Glow */}
+      <span className="absolute inset-0 border border-[var(--brand-green)]/40 pointer-events-none z-10 opacity-60 group-hover:opacity-100 transition-opacity" />
+
+      {/* Text Content */}
+      <span className="relative z-30">{children}</span>
+    </span>
   );
 }
