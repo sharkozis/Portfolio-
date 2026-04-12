@@ -14,7 +14,7 @@ interface ThanksgivingProps {
   cards: CardData[];
 }
 
-export default function Thanksgiving({ cards }: ThanksgivingProps) {
+export default function ThanksgivingClient({ cards }: ThanksgivingProps) {
   return (
     <section className="relative w-screen bg-black py-24 md:py-32 overflow-hidden selection:bg-[var(--brand-green)] selection:text-black">
       <div className="container mx-auto px-6 md:px-12 max-w-7xl">
@@ -32,9 +32,9 @@ export default function Thanksgiving({ cards }: ThanksgivingProps) {
                 Thanks <br />
                 <span className="text-[var(--brand-green)]">Everyone</span>
               </h2>
-              <p className="text-zinc-500 text-xl md:text-2xl max-w-md leading-relaxed">
-                This whole project is created by AI. Not the designs, but the
-                code.
+              <p className="text-zinc-500 text-xl md:text-2xl max-w-md leading-tight">
+                This project was crafted solo—where my design meets code
+                generated entirely with the help of AI.
               </p>
             </motion.div>
           </div>
