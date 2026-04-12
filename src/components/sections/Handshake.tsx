@@ -2,6 +2,26 @@
 
 import { motion, useAnimation, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import { ChevronRight } from "lucide-react";
+
+const CONNECT_CARDS = [
+  {
+    name: "LinkedIn",
+    image: "/connect1.png",
+    href: "https://www.linkedin.com/in/sharkozisofficial/",
+  },
+  {
+    name: "Github",
+    image: "/connect2.png",
+    href: "https://github.com/sharkozis",
+  },
+  {
+    name: "Discord",
+    image: "/coonnect3.png",
+    href: "https://discord.gg/J5842828",
+  },
+];
 
 const CHIPS = ["Available", "Remote", "Collaborative", "Design Eng"];
 
@@ -82,25 +102,33 @@ function HandshakeSlider() {
         </motion.button>
       </div>
 
-      {/* Pop-up Chips Container */}
-      <div className="flex flex-wrap justify-center gap-4 min-h-[50px]">
+      {/* Pop-up Cards Container */}
+      <div className="flex flex-wrap justify-center gap-4 min-h-[60px] pt-8">
         {isFinished && (
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 w-full">
-            {CHIPS.map((chip, i) => (
-              <motion.div
-                key={chip}
-                initial={{ opacity: 0, scale: 0.5, y: 20 }}
+          <div className="flex flex-wrap justify-center gap-4">
+            {CONNECT_CARDS.map((card, i) => (
+              <motion.a
+                key={i}
+                href={card.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                initial={{ opacity: 0, scale: 0.8, y: 30 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
+                whileHover={{ scale: 1.05, y: -4 }}
                 transition={{
-                  delay: i * 0.15,
+                  delay: i * 0.1,
                   type: "spring",
                   stiffness: 260,
-                  damping: 15,
+                  damping: 18,
                 }}
-                className="px-6 py-3 bg-zinc-900/90 border border-[#2da547]/30 rounded-xl text-xs font-mono text-[var(--brand-green)] uppercase tracking-widest text-center shadow-[0_0_15px_rgba(45,165,71,0.1)]"
+                className="flex items-center gap-2 px-4  bg-zinc-900 border border-white/10 rounded-2xl shadow-2xl group transition-all hover:border-[var(--brand-green)]/40 hover:bg-zinc-800"
               >
-                {chip}
-              </motion.div>
+                <span className="text-[11px] font-medium text-zinc-400 group-hover:text-white transition-colors">
+                  {card.name}
+                </span>
+
+                <ChevronRight className="w-4 h-4 text-zinc-600 group-hover:text-[var(--brand-green)] transition-colors" />
+              </motion.a>
             ))}
           </div>
         )}
@@ -177,7 +205,7 @@ export default function Handshake() {
       </motion.div>
 
       <div className="absolute bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-400 font-mono text-[9px] uppercase tracking-widest">
-        <span>&copy; All rights reserved 2026 Hossain — Bangladesh</span>
+        <span>&copy; 2026 Hossain. All rights reserved. Bangladesh.</span>
       </div>
     </section>
   );

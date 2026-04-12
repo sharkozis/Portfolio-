@@ -1,6 +1,6 @@
 "use client";
 
-import { House, User, Code2, Briefcase, Mail, Sparkles } from "lucide-react";
+import { House, User, Code2, Briefcase, Mail, HelpCircle } from "lucide-react";
 import { Dock, DockIcon, DockItem, DockLabel } from "@/components/core/dock";
 import { cn } from "@/lib/utils";
 import { useState, useEffect } from "react";
@@ -28,7 +28,7 @@ const navItems = [
   },
   {
     title: "Unknown",
-    icon: <Sparkles className="h-full w-full" />,
+    icon: <HelpCircle className="h-full w-full" />,
     href: "#unknown",
   },
   {
