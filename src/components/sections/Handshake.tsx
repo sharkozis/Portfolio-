@@ -34,53 +34,50 @@ function HandshakeSlider() {
 
   return (
     <div className="flex flex-col items-center gap-12 w-full max-w-2xl mx-auto">
-      {/* Slider & Button Wrapper */}
-      <div className="flex items-center gap-4 w-full">
-        {/* Slider Container - Navbar inspired shape */}
-        <div className="relative p-1 bg-zinc-900/80 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-2xl flex-1 h-24 flex items-center overflow-hidden">
-          {/* Loading Bar Background */}
-          <div className="absolute inset-4 bg-black/60 rounded-xl overflow-hidden border border-white/5">
-            {/* Glowing Progress Bar */}
+      {/* Slider Container - Navbar inspired shape */}
+      <div className="relative p-1 bg-zinc-900/80 backdrop-blur-3xl border border-white/20 rounded-2xl shadow-2xl w-full h-24 flex items-center overflow-hidden">
+        {/* Loading Bar Background - Adjusted right inset to clear the button area */}
+        <div className="absolute inset-y-4 left-4 right-16 bg-black/60 rounded-xl overflow-hidden border border-white/5">
+          {/* Glowing Progress Bar */}
+          <motion.div
+            initial={{ width: "0%" }}
+            animate={{ width: `${progress}%` }}
+            className="h-full bg-[#2da547] relative"
+            style={{
+              boxShadow: isStarted
+                ? "0 0 30px rgba(45, 165, 71, 0.6), 0 0 60px rgba(45, 165, 71, 0.3)"
+                : "none",
+            }}
+          >
+            {/* Inner Glow/Shimmer */}
             <motion.div
-              initial={{ width: "0%" }}
-              animate={{ width: `${progress}%` }}
-              className="h-full bg-[#2da547] relative"
-              style={{
-                boxShadow: isStarted
-                  ? "0 0 30px rgba(45, 165, 71, 0.6), 0 0 60px rgba(45, 165, 71, 0.3)"
-                  : "none",
-              }}
-            >
-              {/* Inner Glow/Shimmer */}
-              <motion.div
-                animate={{ x: ["-100%", "100%"] }}
-                transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
-                className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-1/2"
-              />
-            </motion.div>
-          </div>
-
-          {/* Text Overlay */}
-          <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-            <span className="text-xs font-mono text-zinc-300 uppercase tracking-[0.4em] font-bold drop-shadow-md">
-              {isFinished
-                ? "Let's connect for future"
-                : isStarted
-                  ? `Syncing... ${Math.round(progress)}%`
-                  : "Press the button"}
-            </span>
-          </div>
+              animate={{ x: ["-100%", "100%"] }}
+              transition={{ duration: 1, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-1/2"
+            />
+          </motion.div>
         </div>
 
-        {/* Interaction Knob - Isolated Outside - Round */}
+        {/* Text Overlay */}
+        <div className="absolute inset-y-0 left-4 right-16 flex items-center justify-center pointer-events-none">
+          <span className="text-xs font-mono text-zinc-300 uppercase tracking-[0.4em] font-bold drop-shadow-md">
+            {isFinished
+              ? "Let's connect for future"
+              : isStarted
+                ? `${Math.round(progress)}%`
+                : "Press the button"}
+          </span>
+        </div>
+
+        {/* Interaction Knob - Back inside but fixed position */}
         <motion.button
           onClick={startLoading}
-          whileHover={{ scale: 1.05 }}
+          whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
-          className="flex-shrink-0 w-10 h-10 rounded-full bg-zinc-900/80 backdrop-blur-3xl border border-white/20 flex items-center justify-center cursor-pointer transition-all shadow-2xl hover:border-[#2da547]/50"
+          className="absolute right-4 w-10 h-10 rounded-full bg-zinc-800 border-2 border-white/10 flex items-center justify-center cursor-pointer z-20 hover:bg-zinc-700 hover:border-[#2da547]/50 transition-all shadow-xl"
         >
           <div
-            className={`w-4 h-4 rounded-full ${isStarted ? "bg-[#2da547] shadow-[0_0_15px_#2da547]" : "bg-zinc-700"} transition-all`}
+            className={`w-3 h-3 rounded-full ${isStarted ? "bg-[#2da547] shadow-[0_0_15px_#2da547]" : "bg-zinc-600"} transition-all`}
           />
         </motion.button>
       </div>
