@@ -1,15 +1,7 @@
 "use client";
 
-import { motion, useAnimation } from "framer-motion";
+import { motion, useAnimation, Variants } from "framer-motion";
 import { useState, useEffect } from "react";
-
-const socials = [
-  { name: "LinkedIn", href: "#" },
-  { name: "X (Twitter)", href: "#" },
-  { name: "GitHub", href: "#" },
-  { name: "Instagram", href: "#" },
-  { name: "Dribbble", href: "#" },
-];
 
 const CHIPS = ["Available", "Remote", "Collaborative", "Design Eng"];
 
@@ -85,7 +77,7 @@ function HandshakeSlider() {
           onClick={startLoading}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="flex-shrink-0 w-24 h-24 rounded-full bg-zinc-900/80 backdrop-blur-3xl border border-white/20 flex items-center justify-center cursor-pointer transition-all shadow-2xl hover:border-[#2da547]/50"
+          className="flex-shrink-0 w-10 h-10 rounded-full bg-zinc-900/80 backdrop-blur-3xl border border-white/20 flex items-center justify-center cursor-pointer transition-all shadow-2xl hover:border-[#2da547]/50"
         >
           <div
             className={`w-4 h-4 rounded-full ${isStarted ? "bg-[#2da547] shadow-[0_0_15px_#2da547]" : "bg-zinc-700"} transition-all`}
@@ -120,29 +112,58 @@ function HandshakeSlider() {
   );
 }
 
+const containerVariants: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+};
+
+const itemVariants: Variants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: {
+      duration: 0.8,
+      ease: [0.16, 1, 0.3, 1],
+    },
+  },
+};
+
 export default function Handshake() {
   return (
     <section
       id="contact"
       className="min-h-screen flex flex-col items-center justify-center bg-black relative px-6 py-40 overflow-hidden"
     >
-      <div className="max-w-5xl w-full text-center space-y-16 relative z-10">
-        <motion.div className="flex flex-col items-start gap-6">
+      <motion.div
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-10%" }}
+        className="max-w-5xl w-full text-center space-y-16 relative z-10"
+      >
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col items-start gap-6"
+        >
           <span className="text-[#4cd964] font-medium">
             Driver M: \portolio \Connect &gt;
           </span>
         </motion.div>
 
-        <motion.div className="space-y-4">
+        <motion.div variants={itemVariants} className="space-y-4">
           <h2 className="text-lg md:text-xl font-medium text-zinc-400 tracking-tight">
             Got a project to discuss?
           </h2>
-          <motion.a
-           
-            className="block relative group"
-          >
+          <motion.a className="block relative group">
             <SelectionFrame>
-              <span className="text-[12vw] sm:text-[8vw] font-bold text-white leading-none tracking-tight uppercase">
+              <span className="text-[9vw] sm:text-[6vw] font-bold text-white leading-none tracking-tight">
                 Let's Talk
               </span>
             </SelectionFrame>
@@ -150,10 +171,13 @@ export default function Handshake() {
         </motion.div>
 
         {/* Custom Interactive Slider */}
-        <motion.div className="flex flex-col items-center">
+        <motion.div
+          variants={itemVariants}
+          className="flex flex-col items-center"
+        >
           <HandshakeSlider />
         </motion.div>
-      </div>
+      </motion.div>
 
       <div className="absolute bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-400 font-mono text-[9px] uppercase tracking-widest">
         <span>&copy; All rights reserved 2026 Hossain — Bangladesh</span>
