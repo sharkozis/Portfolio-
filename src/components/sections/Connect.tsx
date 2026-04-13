@@ -184,7 +184,7 @@ export default function Connect() {
   return (
     <section
       id="contact"
-      className="min-h-screen flex flex-col items-center justify-center bg-black relative px-6 py-40 overflow-hidden"
+      className="min-h-[90vh] md:min-h-screen flex flex-col items-center justify-center bg-black relative px-6 pb-20 md:py-40 overflow-hidden"
     >
       <motion.div
         variants={containerVariants}
@@ -223,9 +223,8 @@ export default function Connect() {
           <ConnectSlider />
         </motion.div>
       </motion.div>
-
-      <div className="absolute bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-400 font-mono text-[9px] uppercase tracking-widest">
-        <span>&copy; 2026 Hossain. All rights reserved. Bangladesh.</span>
+      <div className="relative mt-20 md:absolute md:bottom-12 w-full max-w-7xl px-10 flex flex-col md:flex-row justify-between items-center gap-6 text-zinc-400 font-mono text-[9px] uppercase tracking-widest">
+        <span>&copy; 2026 Hossain. All rights reserved.</span>
       </div>
     </section>
   );
