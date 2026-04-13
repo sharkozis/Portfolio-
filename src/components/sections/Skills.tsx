@@ -87,7 +87,7 @@ export default function Skills() {
   return (
     <section
       id="skills"
-      className="relative w-full min-h-screen overflow-hidden bg-[#050505] font-sans select-none"
+      className="relative w-full min-h-[70vh] md:min-h-screen overflow-hidden bg-[#050505] font-sans select-none"
       onPointerDown={(e) =>
         ((e.currentTarget as HTMLElement).style.cursor = "grabbing")
       }
@@ -270,11 +270,13 @@ function SkillIcon({
   // R = 500 center at 50% width, 100% height
   const x = useTransform(
     angle,
-    (a: number) => `calc(50% + ${Math.sin((a * Math.PI) / 180) * 500}px)`,
+    (a: number) =>
+      `calc(50% + ${Math.sin((a * Math.PI) / 180)} * min(500px, 47.5vw))`,
   );
   const y = useTransform(
     angle,
-    (a: number) => `calc(100% - ${Math.cos((a * Math.PI) / 180) * 500}px)`,
+    (a: number) =>
+      `calc(100% - ${Math.cos((a * Math.PI) / 180)} * min(500px, 47.5vw))`,
   );
 
   // Wider visibility range for the 50% arc
