@@ -69,9 +69,9 @@ export function Navbar() {
   }, []);
 
   return (
-    <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 -translate-x-1/2 w-full max-w-[90vw] md:max-w-3xl overflow-visible">
+    <div className="fixed bottom-6 md:bottom-20 left-1/2 z-50 -translate-x-1/2 w-full max-w-[95vw] md:max-w-3xl overflow-visible">
       <div className="relative overflow-visible">
-        <Dock className="items-end pb-3 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl px-8 items-center justify-center gap-8">
+        <Dock className="pb-3 bg-white/5 backdrop-blur-3xl border border-white/10 rounded-2xl shadow-2xl px-4 md:px-8 items-center justify-center gap-4 md:gap-8">
           {navItems.map((item, idx) => (
             <DockItem
               key={idx}

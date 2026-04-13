@@ -233,7 +233,6 @@ export default function Connect() {
 function SelectionFrame({ children }: { children: React.ReactNode }) {
   return (
     <span className="relative inline-block px-8 py-4 group cursor-pointer">
-      {/* Corner Handles */}
       {[
         "top-0 left-0 -translate-x-1/2 -translate-y-1/2",
         "top-0 right-0 translate-x-1/2 -translate-y-1/2",
