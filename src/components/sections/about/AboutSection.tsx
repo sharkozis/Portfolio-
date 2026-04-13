@@ -16,41 +16,76 @@ export default function AboutSection() {
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // ── Main Pinning ──
-      const tl = gsap.timeline({
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=150%", // How long it stays sticky
-          pin: true,
-          scrub: 1, // Smooth scrub
-          anticipatePin: 1,
+      const mm = gsap.matchMedia();
+
+      mm.add(
+        {
+          isMobile: "(max-width: 768px)",
+          isDesktop: "(min-width: 769px)",
         },
-      });
+        (context) => {
+          const { isMobile } = context.conditions as any;
 
-      // Targets: every element with class .terminal-reveal
-      const lines = gsap.utils.toArray(".terminal-reveal");
+          const tl = gsap.timeline({
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: "top top",
+              end: isMobile ? "+=200%" : "+=150%",
+              pin: true,
+              scrub: 1,
+              anticipatePin: 1,
+            },
+          });
 
-      lines.forEach((line) => {
-        tl.fromTo(
-          line as HTMLElement,
-          { opacity: 0, y: 15 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 1,
-            ease: "power2.out",
-          },
-          "-=0.5", // Slight overlap for stagger feel
-        );
-      });
+          const lines = gsap.utils.toArray(".terminal-reveal") as HTMLElement[];
 
-      // Special handling for the success message at the end
-      tl.fromTo(
-        ".terminal-success",
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5 },
-        "+=0.2",
+          if (isMobile) {
+            // Mobile: Reveal first 3 lines
+            lines.slice(0, 3).forEach((line) => {
+              tl.fromTo(
+                line,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+                "-=0.5",
+              );
+            });
+
+            // Mobile: Move terminal container upward to make room
+            tl.to(
+              terminalRef.current,
+              { y: -120, duration: 1.5, ease: "power2.inOut" },
+              "+=0.2",
+            );
+
+            // Mobile: Reveal remaining lines line and success message
+            lines.slice(3).forEach((line) => {
+              tl.fromTo(
+                line,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+                "-=0.2",
+              );
+            });
+          } else {
+            // Desktop: Original behavior
+            lines.forEach((line) => {
+              tl.fromTo(
+                line,
+                { opacity: 0, y: 15 },
+                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+                "-=0.5",
+              );
+            });
+          }
+
+          // Shared: Success message reveal
+          tl.fromTo(
+            ".terminal-success",
+            { opacity: 0 },
+            { opacity: 1, duration: 0.5 },
+            "+=0.2",
+          );
+        },
       );
     }, sectionRef);
 
