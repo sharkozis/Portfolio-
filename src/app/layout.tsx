@@ -25,7 +25,7 @@ export default function RootLayout({
       lang="en"
       className={`${roboto.variable} h-full antialiased font-sans`}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col relative">
         <SmoothScroll>{children}</SmoothScroll>
       </body>
     </html>

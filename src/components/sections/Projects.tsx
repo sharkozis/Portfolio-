@@ -138,6 +138,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
           src={project.image}
           alt={project.title}
           fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
           className="object-cover opacity-80 group-hover:opacity-40 group-hover:scale-105 group-hover:blur-sm transition-all duration-700 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent group-hover:from-black/90 group-hover:via-black/40 transition-all duration-500 z-10" />

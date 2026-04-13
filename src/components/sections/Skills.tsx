@@ -322,6 +322,7 @@ function SkillIcon({
           src={skill.icon}
           alt={skill.name}
           fill
+          sizes="56px"
           className="object-cover z-10"
         />
         {/* Subtle Overlay Glow */}

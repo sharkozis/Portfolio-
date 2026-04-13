@@ -74,7 +74,13 @@ function Card({ image, title, subtitle, tag }: CardData) {
       <div className="flex items-center gap-4">
         {/* Image container */}
         <div className="relative w-12 h-12 rounded-xl bg-white/5 flex items-center justify-center border border-white/5 overflow-hidden">
-          <Image src={image} alt={title} fill className="object-cover" />
+          <Image
+            src={image}
+            alt={title}
+            fill
+            sizes="48px"
+            className="object-cover"
+          />
         </div>
 
         {/* Text */}

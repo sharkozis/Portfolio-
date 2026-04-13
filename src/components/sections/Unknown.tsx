@@ -142,7 +142,7 @@ export default function Unknown() {
 
               {/* Content */}
               <div
-                className="flex-1 overflow-y-auto modal-scrollbar overscroll-contain min-h-0"
+                className="flex-1 relative overflow-y-auto modal-scrollbar overscroll-contain min-h-0"
                 data-lenis-prevent
               >
                 <div className="max-w-6xl mx-auto p-8 md:p-16 space-y-16">
@@ -165,6 +165,7 @@ export default function Unknown() {
                           src="/ae.jpg"
                           alt="After Effects"
                           fill
+                          sizes="(max-width: 768px) 60vw, 30vw"
                           className="object-cover"
                         />
                       </div>

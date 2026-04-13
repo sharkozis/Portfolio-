@@ -132,6 +132,7 @@ export default function BentoFeatures() {
                     src={item.imageSrc || "/app-1.png"}
                     alt={`Bento placeholder ${item.id}`}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className={`transition-opacity duration-700 ease-out ${
                       item.hasImage
                         ? `${item.imageClass || "object-contain"} opacity-90`

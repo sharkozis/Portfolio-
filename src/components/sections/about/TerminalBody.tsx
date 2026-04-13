@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 export default function TerminalBody() {
   return (
@@ -19,7 +20,14 @@ export default function TerminalBody() {
             Hey, I'm <span className="text-white font-bold">Hossain</span> — a{" "}
             <span className="text-white font-bold">Designer</span> and{" "}
             <span className="text-white font-bold">Frontend Developer</span>{" "}
-            from Bangladesh 🇧🇩
+            from Bangladesh{" "}
+            <Image
+              src="/bd.png"
+              alt="Bangladesh Flag"
+              width={35}
+              height={22}
+              className="inline-block align-middle rounded-sm mx-1"
+            />
           </h2>
         </div>
 
