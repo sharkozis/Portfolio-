@@ -30,7 +30,7 @@ export default function Hero() {
         {/* Top Layout: Avatar + Text on left, Connect on right */}
         <div className="w-full flex flex-col md:flex-row justify-between items-start gap-12 md:gap-0">
           {/* Left Side: Avatar and Text Content beside each other */}
-          <div className="flex flex-col md:flex-row items-center gap-8 md:gap-10">
+          <div className="flex flex-col md:flex-row items-start md:items-center gap-8 md:gap-10">
             {/* Avatar Container */}
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
@@ -49,7 +49,7 @@ export default function Hero() {
             </motion.div>
 
             {/* Text Content beside Avatar */}
-            <div className="flex flex-col text-center md:text-left">
+            <div className="flex flex-col text-left">
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -110,7 +110,7 @@ export default function Hero() {
             </span>
             <br className="hidden md:block" />
           </p>
-          <p className="opacity-80 text-shimmer md:text-3xl mt-4">
+          <p className="opacity-80 text-shimmer text-xl md:text-3xl mt-4">
             Blending creativity with code to create smooth, modern interfaces.
           </p>
 
