@@ -5,16 +5,16 @@ import Image from "next/image";
 
 export default function TerminalBody() {
   return (
-    <div className="p-8 md:p-14 font-sans space-y-10">
+    <div className="py-5 px-5 md:p-14 font-sans space-y-6 md:space-y-10">
       {/* ── Prompt ── */}
-      <div className="flex items-center gap-2 text-sm md:text-base mb-12">
+      <div className="flex items-center gap-2 text-sm md:text-base mb-6 md:mb-12">
         <span className="text-[#4cd964] font-medium">
           Driver C: \portolio \About me &gt;
         </span>
       </div>
 
       {/* ── Content ── */}
-      <div className="space-y-14">
+      <div className="space-y-6 md:space-y-14">
         <div className="terminal-reveal">
           <h2 className="text-xl md:text-4xl font-medium leading-[1.4] text-zinc-400">
             Hey, I'm <span className="text-white font-bold">Hossain</span> — a{" "}
@@ -53,7 +53,7 @@ export default function TerminalBody() {
         </div>
 
         <div className="terminal-reveal">
-          <div className="flex flex-wrap items-center gap-x-4 gap-y-6 text-lg md:text-2xl leading-relaxed text-zinc-400">
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-4 md:gap-y-6 text-lg md:text-2xl leading-relaxed text-zinc-400">
             <span>My goal is to create work that</span>
             <span className="inline-block px-5 py-2 bg-[#4cd964] text-black font-bold rounded-md text-base md:text-xl">
               not only looks good but also feels right
@@ -63,7 +63,7 @@ export default function TerminalBody() {
         </div>
 
         {/* ── Success message ── */}
-        <div className="terminal-success pt-10 border-t border-white/5 flex items-center gap-2 text-[#4cd964] font-mono text-xs md:text-sm">
+        <div className="terminal-success pt-6 md:pt-10 border-t border-white/5 flex items-center gap-2 text-[#4cd964] font-mono text-xs md:text-sm">
           <span>
             ✓ <span className="text-white">Compiled in</span> 32ms............
           </span>

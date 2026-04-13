@@ -102,7 +102,7 @@ export default function Hero() {
           transition={{ delay: 0.5, duration: 0.8 }}
           className="flex flex-col items-center text-center mx-auto relative group mt-8"
         >
-          <p className="text-xl md:text-4xl font-light text-white/50 mt-30 leading-relaxed">
+          <p className="text-xl md:text-4xl font-light text-white/50 mt-12 md:mt-30 leading-relaxed">
             I <SelectionFrame>Design</SelectionFrame> and{" "}
             <SelectionFrame>Develop</SelectionFrame>{" "}
             <span className="text-shimmer">
