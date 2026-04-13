@@ -40,7 +40,7 @@ export default function Projects() {
     <section
       id="projects"
       ref={targetRef}
-      className="relative h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
+      className="relative h-[300vh] md:h-[600vh] bg-black selection:bg-[var(--brand-green)] selection:text-black"
     >
       <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden py-0">
         {/* Section Header */}
@@ -71,7 +71,7 @@ export default function Projects() {
             </motion.h2>
           </div>
 
-          <div className="hidden md:flex flex-col items-end gap-2">
+          <div className="flex flex-col items-end gap-2">
             {/* <span className="text-zinc-500 font-mono text-xs uppercase tracking-widest">
               Projects
             </span> */}
@@ -130,7 +130,7 @@ function ProjectCard({ project, index }: { project: any; index: number }) {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="group relative h-[65vh] w-[85vw] md:w-[50vw] rounded-3xl overflow-hidden flex-shrink-0 border border-white/10 bg-[#0a0a0a] shadow-2xl"
+      className="group relative h-[50vh] md:h-[65vh] w-[85vw] md:w-[50vw] rounded-3xl overflow-hidden flex-shrink-0 border border-white/10 bg-[#0a0a0a] shadow-2xl"
     >
       {/* Background Image with Reveal Overlay */}
       <div className="absolute inset-0 z-0">
