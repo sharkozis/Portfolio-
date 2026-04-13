@@ -120,7 +120,7 @@ export default function Skills() {
           </span>
         </div>
         {/* Header and Toggle Button Group */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-16 gap-8 relative z-50">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8 relative z-50">
           <div className="flex bg-white/10 py-2 px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
             {activeMode === "frontend" ? (
               <motion.div className="relative cursor-default">
