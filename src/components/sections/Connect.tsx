@@ -87,7 +87,7 @@ function ConnectSlider() {
 
         {/* Text Overlay */}
         <div className="absolute inset-y-0 left-4 right-16 flex items-center justify-center pointer-events-none">
-          <span className="text-xs font-mono text-zinc-300 uppercase tracking-[0.4em] font-bold drop-shadow-md">
+          <span className="text-[10px] md:text-xs font-mono text-zinc-300 uppercase tracking-[0.2em] md:tracking-[0.4em] font-bold drop-shadow-md whitespace-nowrap">
             {isFinished
               ? "Let's connect for future"
               : isStarted

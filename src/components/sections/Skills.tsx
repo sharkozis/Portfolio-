@@ -120,12 +120,12 @@ export default function Skills() {
           </span>
         </div>
         {/* Header and Toggle Button Group */}
-        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-16 gap-8 relative z-50">
-          <div className="flex bg-white/10 py-2 px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
+        <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-8 md:mb-16 gap-8 relative z-50">
+          <div className="flex bg-white/10 py-1.5 px-2 md:py-2 md:px-3 rounded-xl border border-white/10 relative gap-2 items-center backdrop-blur-sm">
             {activeMode === "frontend" ? (
               <motion.div className="relative cursor-default">
                 <AnimatedShinyButton
-                  className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
+                  className="px-5 md:px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
                   active={true}
                   showIcon={false}
                 >
@@ -139,7 +139,7 @@ export default function Skills() {
             ) : (
               <button
                 onClick={() => setActiveMode("frontend")}
-                className="px-8 py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
+                className="px-5 md:px-8 py-1.5 md:py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
               >
                 Frontend
               </button>
@@ -148,7 +148,7 @@ export default function Skills() {
             {activeMode === "design" ? (
               <motion.div className="relative cursor-default">
                 <AnimatedShinyButton
-                  className="px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
+                  className="px-5 md:px-8 !bg-black !border-transparent rounded-lg !text-white active:translate-y-0"
                   active={true}
                   showIcon={false}
                 >
@@ -162,7 +162,7 @@ export default function Skills() {
             ) : (
               <button
                 onClick={() => setActiveMode("design")}
-                className="px-8 py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
+                className="px-5 md:px-8 py-1.5 md:py-2.5 rounded-lg text-white/40 font-bold transition-all duration-300 hover:text-white/60"
               >
                 Design
               </button>
@@ -311,18 +311,18 @@ function SkillIcon({
           filter: "blur(25px)",
           boxShadow: "0 0 60px rgba(16, 252, 114, 0.5)",
         }}
-        className="absolute w-14 h-14 rounded-full z-0"
+        className="absolute w-10 h-10 md:w-14 md:h-14 rounded-full z-0"
       />
 
       <div
-        className="relative w-14 h-14 bg-[#0a0a0a] border border-white/10 shadow-2xl group z-10"
+        className="relative w-10 h-10 md:w-14 md:h-14 bg-[#0a0a0a] border border-white/10 shadow-2xl group z-10"
         style={{ borderRadius: "8px", overflow: "hidden" }}
       >
         <Image
           src={skill.icon}
           alt={skill.name}
           fill
-          sizes="56px"
+          sizes="(max-width: 768px) 40px, 56px"
           className="object-cover z-10"
         />
         {/* Subtle Overlay Glow */}

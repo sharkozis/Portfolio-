@@ -13,79 +13,70 @@ gsap.registerPlugin(ScrollTrigger);
 export default function AboutSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const terminalRef = useRef<HTMLDivElement>(null);
+  const terminalContentRef = useRef<HTMLDivElement>(null);
 
   useLayoutEffect(() => {
+    const isMobile = window.innerWidth <= 768;
+
     const ctx = gsap.context(() => {
-      const mm = gsap.matchMedia();
-
-      mm.add(
-        {
-          isMobile: "(max-width: 768px)",
-          isDesktop: "(min-width: 769px)",
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top top",
+          end: isMobile ? "+=250%" : "+=150%",
+          pin: true,
+          scrub: 1,
+          anticipatePin: 1,
         },
-        (context) => {
-          const { isMobile } = context.conditions as any;
+      });
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: "top top",
-              end: isMobile ? "+=200%" : "+=150%",
-              pin: true,
-              scrub: 1,
-              anticipatePin: 1,
-            },
-          });
+      const lines = gsap.utils.toArray(".terminal-reveal") as HTMLElement[];
 
-          const lines = gsap.utils.toArray(".terminal-reveal") as HTMLElement[];
-
-          if (isMobile) {
-            // Mobile: Reveal first 3 lines
-            lines.slice(0, 3).forEach((line) => {
-              tl.fromTo(
-                line,
-                { opacity: 0, y: 15 },
-                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-                "-=0.5",
-              );
-            });
-
-            // Mobile: Move terminal container upward to make room
-            tl.to(
-              terminalRef.current,
-              { y: -120, duration: 1.5, ease: "power2.inOut" },
-              "+=0.2",
-            );
-
-            // Mobile: Reveal remaining lines line and success message
-            lines.slice(3).forEach((line) => {
-              tl.fromTo(
-                line,
-                { opacity: 0, y: 15 },
-                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-                "-=0.2",
-              );
-            });
-          } else {
-            // Desktop: Original behavior
-            lines.forEach((line) => {
-              tl.fromTo(
-                line,
-                { opacity: 0, y: 15 },
-                { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
-                "-=0.5",
-              );
-            });
-          }
-
-          // Shared: Success message reveal
+      if (isMobile) {
+        // Mobile Stage 1: Reveal first 3 lines
+        lines.slice(0, 3).forEach((line) => {
           tl.fromTo(
-            ".terminal-success",
-            { opacity: 0 },
-            { opacity: 1, duration: 0.5 },
-            "+=0.2",
+            line,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+            "-=0.5",
           );
-        },
+        });
+
+        // Mobile Stage 2: Slide INNER terminal content up instead of the pinned outer ref
+        tl.to(
+          terminalContentRef.current,
+          { y: -150, duration: 2, ease: "power2.inOut" },
+          "+=0.2",
+        );
+
+        // Mobile Stage 3: Reveal remaining lines while shifted
+        lines.slice(3).forEach((line) => {
+          tl.fromTo(
+            line,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+            "-=0.2",
+          );
+        });
+      } else {
+        // Desktop: Standard simple reveal
+        lines.forEach((line) => {
+          tl.fromTo(
+            line,
+            { opacity: 0, y: 15 },
+            { opacity: 1, y: 0, duration: 1, ease: "power2.out" },
+            "-=0.5",
+          );
+        });
+      }
+
+      // Shared ending
+      tl.fromTo(
+        ".terminal-success",
+        { opacity: 0 },
+        { opacity: 1, duration: 0.5 },
+        "+=0.2",
       );
     }, sectionRef);
 
@@ -102,7 +93,10 @@ export default function AboutSection() {
       <TerminalBackground />
 
       <div ref={terminalRef} className="max-w-6xl w-full relative z-10 px-6">
-        <div className="bg-[#050505]/80 backdrop-blur-3xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.5)]">
+        <div
+          ref={terminalContentRef}
+          className="bg-[#050505]/80 backdrop-blur-3xl border border-white/10 rounded-2xl overflow-hidden shadow-[0_0_80px_rgba(0,0,0,0.5)]"
+        >
           <TerminalHeader />
           <TerminalBody />
         </div>
