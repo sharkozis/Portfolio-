@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { AnimatedShinyButton } from "@/components/ui/animated-shiny-button";
-import { TextShimmer } from "@/components/core/text-shimmer";
+
 import { FlickeringGrid } from "@/registry/magicui/flickering-grid";
 
 export default function Hero() {
@@ -133,9 +133,6 @@ export default function Hero() {
   );
 }
 
-{
-  /* ── SelectionFrame Helper Component ── */
-}
 function SelectionFrame({ children }: { children: React.ReactNode }) {
   return (
     <span className="relative inline-block px-4 py-1 mx-1 group cursor-default">
